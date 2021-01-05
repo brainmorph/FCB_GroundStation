@@ -46,7 +46,8 @@
             // 
             this.comboBox_BaudRate.FormattingEnabled = true;
             this.comboBox_BaudRate.Items.AddRange(new object[] {
-            "115200"});
+            "115200",
+            "9600"});
             this.comboBox_BaudRate.Location = new System.Drawing.Point(129, 39);
             this.comboBox_BaudRate.Name = "comboBox_BaudRate";
             this.comboBox_BaudRate.Size = new System.Drawing.Size(83, 21);
@@ -54,24 +55,28 @@
             // 
             // button_Connect
             // 
-            this.button_Connect.Location = new System.Drawing.Point(88, 278);
+            this.button_Connect.Location = new System.Drawing.Point(103, 138);
             this.button_Connect.Name = "button_Connect";
             this.button_Connect.Size = new System.Drawing.Size(75, 23);
             this.button_Connect.TabIndex = 2;
             this.button_Connect.Text = "Connect";
             this.button_Connect.UseVisualStyleBackColor = true;
+            this.button_Connect.Click += new System.EventHandler(this.button_Connect_Click);
             // 
             // FormSerialPortSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(279, 450);
+            this.ClientSize = new System.Drawing.Size(279, 173);
             this.Controls.Add(this.button_Connect);
             this.Controls.Add(this.comboBox_BaudRate);
             this.Controls.Add(this.label1);
             this.Name = "FormSerialPortSettings";
             this.Text = "Serial Port Settings";
             this.Load += new System.EventHandler(this.FormSerialPortSettings_Load);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.comboBox_BaudRate, 0);
+            this.Controls.SetChildIndex(this.button_Connect, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
