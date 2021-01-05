@@ -10,17 +10,16 @@ using System.Windows.Forms;
 
 namespace GroundStation
 {
-    public partial class Form1 : Form
+    public partial class FormSerialPortSettings : Form
     {
-        public Form1()
+        public FormSerialPortSettings()
         {
             InitializeComponent();
         }
 
-        private void serialPortSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FormSerialPortSettings_Load(object sender, EventArgs e)
         {
-            FormSerialPortSettings s = new FormSerialPortSettings();
-            s.ShowDialog();     // Causes background window to freeze
+            comboBox_BaudRate.SelectedIndex = 0;
         }
     }
 }

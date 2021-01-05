@@ -57,6 +57,7 @@
             this.serialPortSetupToolStripMenuItem.Name = "serialPortSetupToolStripMenuItem";
             this.serialPortSetupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.serialPortSetupToolStripMenuItem.Text = "Serial Port Setup";
+            this.serialPortSetupToolStripMenuItem.Click += new System.EventHandler(this.serialPortSetupToolStripMenuItem_Click);
             // 
             // Form1
             // 
