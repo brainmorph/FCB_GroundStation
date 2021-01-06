@@ -46,7 +46,18 @@ namespace GroundStation
             String line = serialPort_UART.ReadLine();
             Debug.WriteLine(line);
 
-            this.Refresh();
+            /* Parse UART data */
+            String[] parsed = line.Split(',');
+
+            /* Throw out incorrect packets */
+            if (parsed.Length != 8 && !parsed[0].Equals("ok"))
+                return;
+
+            serialPort_UART.DiscardInBuffer();
+
+            label_PitchValue.Text = parsed[4];
+            label_RollValue.Text = parsed[1];
+            //label_YawValue.Text = ??
         }
     }
 }
