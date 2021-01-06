@@ -68,10 +68,22 @@ namespace GroundStation
         {
             var connectedControllers = BrandonPotter.XBox.XBoxController.GetConnectedControllers();
             Debug.WriteLine(connectedControllers.ToString());
+
+            if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().Count() > 0)
+            {
+                timer_GamePad.Enabled = true;
+            }
         }
 
         private void timer_GamePad_Tick(object sender, EventArgs e)
         {
+            if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().Count() <= 0)
+            {
+                timer_GamePad.Enabled = false;
+                return;
+            }
+
+
             /* Update Controller Visualization */
             if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonAPressed)
             {
