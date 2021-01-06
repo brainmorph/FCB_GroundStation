@@ -67,8 +67,7 @@ namespace GroundStation
 
         private void comboBox_BaudRate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Debug.WriteLine("Set baudrate: " + comboBox_BaudRate.Text);
-            Debug.WriteLine("Set baudrate: " + int.Parse(comboBox_BaudRate.Text));            
+            Debug.WriteLine("Selected baudrate: " + comboBox_BaudRate.Text);          
         }
     }
 }

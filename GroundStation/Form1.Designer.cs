@@ -42,8 +42,11 @@
             this.label_PitchValue = new System.Windows.Forms.Label();
             this.label_RollValue = new System.Windows.Forms.Label();
             this.label_YawValue = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label_Altitude = new System.Windows.Forms.Label();
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip_Main
@@ -101,12 +104,12 @@
             this.groupBox_Attitude.Controls.Add(this.label_Yaw);
             this.groupBox_Attitude.Controls.Add(this.label_Roll);
             this.groupBox_Attitude.Controls.Add(this.label_Pitch);
-            this.groupBox_Attitude.Location = new System.Drawing.Point(12, 171);
+            this.groupBox_Attitude.Location = new System.Drawing.Point(12, 97);
             this.groupBox_Attitude.Name = "groupBox_Attitude";
-            this.groupBox_Attitude.Size = new System.Drawing.Size(156, 147);
+            this.groupBox_Attitude.Size = new System.Drawing.Size(131, 147);
             this.groupBox_Attitude.TabIndex = 3;
             this.groupBox_Attitude.TabStop = false;
-            this.groupBox_Attitude.Text = "Attitude";
+            this.groupBox_Attitude.Text = "Angle Error [degrees]";
             // 
             // label_Roll
             // 
@@ -138,7 +141,7 @@
             // label_RollValue
             // 
             this.label_RollValue.AutoSize = true;
-            this.label_RollValue.Location = new System.Drawing.Point(40, 67);
+            this.label_RollValue.Location = new System.Drawing.Point(46, 67);
             this.label_RollValue.Name = "label_RollValue";
             this.label_RollValue.Size = new System.Drawing.Size(13, 13);
             this.label_RollValue.TabIndex = 6;
@@ -147,17 +150,37 @@
             // label_YawValue
             // 
             this.label_YawValue.AutoSize = true;
-            this.label_YawValue.Location = new System.Drawing.Point(43, 107);
+            this.label_YawValue.Location = new System.Drawing.Point(46, 107);
             this.label_YawValue.Name = "label_YawValue";
             this.label_YawValue.Size = new System.Drawing.Size(13, 13);
             this.label_YawValue.TabIndex = 7;
             this.label_YawValue.Text = "0";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label_Altitude);
+            this.groupBox1.Location = new System.Drawing.Point(12, 250);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(131, 59);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Altitude [meters]";
+            // 
+            // label_Altitude
+            // 
+            this.label_Altitude.AutoSize = true;
+            this.label_Altitude.Location = new System.Drawing.Point(46, 26);
+            this.label_Altitude.Name = "label_Altitude";
+            this.label_Altitude.Size = new System.Drawing.Size(13, 13);
+            this.label_Altitude.TabIndex = 0;
+            this.label_Altitude.Text = "0";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_Attitude);
             this.Controls.Add(this.panel_SerialStatusBox);
             this.Controls.Add(this.menuStrip_Main);
@@ -168,6 +191,8 @@
             this.menuStrip_Main.PerformLayout();
             this.groupBox_Attitude.ResumeLayout(false);
             this.groupBox_Attitude.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,6 +213,8 @@
         private System.Windows.Forms.Label label_YawValue;
         private System.Windows.Forms.Label label_RollValue;
         private System.Windows.Forms.Label label_PitchValue;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label_Altitude;
     }
 }
 
