@@ -15,7 +15,7 @@ namespace GroundStation
     {
         Form1Handle handle; // used for accessing objects exposed in Form1
 
-        public FormSerialPortSettings(Form1Handle form1Struct)
+        public FormSerialPortSettings(ref Form1Handle form1Struct)
         {
             InitializeComponent();
 

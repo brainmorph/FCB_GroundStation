@@ -22,7 +22,7 @@ namespace GroundStation
     public partial class Form1 : Form
     {
 
-        Form1Handle formHandle = new Form1Handle();
+        Form1Handle formHandle;
 
         public Form1()
         {
@@ -35,7 +35,7 @@ namespace GroundStation
 
         private void serialPortSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormSerialPortSettings s = new FormSerialPortSettings(formHandle);
+            FormSerialPortSettings s = new FormSerialPortSettings(ref formHandle);
             s.ShowDialog();     // Causes background window to freeze
         }
 
