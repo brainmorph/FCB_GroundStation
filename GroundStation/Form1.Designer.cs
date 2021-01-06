@@ -59,16 +59,16 @@
             // serialPortSetupToolStripMenuItem
             // 
             this.serialPortSetupToolStripMenuItem.Name = "serialPortSetupToolStripMenuItem";
-            this.serialPortSetupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serialPortSetupToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.serialPortSetupToolStripMenuItem.Text = "Serial Port Setup";
             this.serialPortSetupToolStripMenuItem.Click += new System.EventHandler(this.serialPortSetupToolStripMenuItem_Click);
             // 
             // panel_SerialStatusBox
             // 
             this.panel_SerialStatusBox.BackColor = System.Drawing.Color.Red;
-            this.panel_SerialStatusBox.Location = new System.Drawing.Point(113, 80);
+            this.panel_SerialStatusBox.Location = new System.Drawing.Point(753, 27);
             this.panel_SerialStatusBox.Name = "panel_SerialStatusBox";
-            this.panel_SerialStatusBox.Size = new System.Drawing.Size(167, 117);
+            this.panel_SerialStatusBox.Size = new System.Drawing.Size(35, 35);
             this.panel_SerialStatusBox.TabIndex = 1;
             // 
             // timer_SerialPort

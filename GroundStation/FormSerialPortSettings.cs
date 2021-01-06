@@ -39,7 +39,15 @@ namespace GroundStation
             handle.serialPort.PortName = "COM9"; // TODO: set this dynamically
 
             /* Open port */
-            handle.serialPort.Open();
+            try
+            {
+                handle.serialPort.Open();
+            }
+            catch
+            {
+                Debug.WriteLine("Cannot open serial port.");
+            }
+
             
             /* Check port opened successfully */
             if (handle.serialPort.IsOpen)
