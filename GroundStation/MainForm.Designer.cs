@@ -37,13 +37,16 @@
             this.timer_SerialPort = new System.Windows.Forms.Timer(this.components);
             this.label_Pitch = new System.Windows.Forms.Label();
             this.groupBox_Attitude = new System.Windows.Forms.GroupBox();
-            this.label_Roll = new System.Windows.Forms.Label();
-            this.label_Yaw = new System.Windows.Forms.Label();
-            this.label_PitchValue = new System.Windows.Forms.Label();
-            this.label_RollValue = new System.Windows.Forms.Label();
             this.label_YawValue = new System.Windows.Forms.Label();
+            this.label_RollValue = new System.Windows.Forms.Label();
+            this.label_PitchValue = new System.Windows.Forms.Label();
+            this.label_Yaw = new System.Windows.Forms.Label();
+            this.label_Roll = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label_Altitude = new System.Windows.Forms.Label();
+            this.usbControllerSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button_controllerA = new System.Windows.Forms.Button();
+            this.timer_GamePad = new System.Windows.Forms.Timer(this.components);
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -55,14 +58,15 @@
             this.settingsToolStripMenuItem});
             this.menuStrip_Main.Location = new System.Drawing.Point(0, 0);
             this.menuStrip_Main.Name = "menuStrip_Main";
-            this.menuStrip_Main.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip_Main.Size = new System.Drawing.Size(360, 24);
             this.menuStrip_Main.TabIndex = 0;
             this.menuStrip_Main.Text = "menuStrip1";
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.serialPortSetupToolStripMenuItem});
+            this.serialPortSetupToolStripMenuItem,
+            this.usbControllerSetupToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -70,14 +74,15 @@
             // serialPortSetupToolStripMenuItem
             // 
             this.serialPortSetupToolStripMenuItem.Name = "serialPortSetupToolStripMenuItem";
-            this.serialPortSetupToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.serialPortSetupToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.serialPortSetupToolStripMenuItem.Text = "Serial Port Setup";
             this.serialPortSetupToolStripMenuItem.Click += new System.EventHandler(this.serialPortSetupToolStripMenuItem_Click);
             // 
             // panel_SerialStatusBox
             // 
+            this.panel_SerialStatusBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_SerialStatusBox.BackColor = System.Drawing.Color.Red;
-            this.panel_SerialStatusBox.Location = new System.Drawing.Point(753, 27);
+            this.panel_SerialStatusBox.Location = new System.Drawing.Point(313, 27);
             this.panel_SerialStatusBox.Name = "panel_SerialStatusBox";
             this.panel_SerialStatusBox.Size = new System.Drawing.Size(35, 35);
             this.panel_SerialStatusBox.TabIndex = 1;
@@ -111,32 +116,14 @@
             this.groupBox_Attitude.TabStop = false;
             this.groupBox_Attitude.Text = "Angle Error [degrees]";
             // 
-            // label_Roll
+            // label_YawValue
             // 
-            this.label_Roll.AutoSize = true;
-            this.label_Roll.Location = new System.Drawing.Point(6, 67);
-            this.label_Roll.Name = "label_Roll";
-            this.label_Roll.Size = new System.Drawing.Size(28, 13);
-            this.label_Roll.TabIndex = 3;
-            this.label_Roll.Text = "Roll:";
-            // 
-            // label_Yaw
-            // 
-            this.label_Yaw.AutoSize = true;
-            this.label_Yaw.Location = new System.Drawing.Point(6, 107);
-            this.label_Yaw.Name = "label_Yaw";
-            this.label_Yaw.Size = new System.Drawing.Size(31, 13);
-            this.label_Yaw.TabIndex = 4;
-            this.label_Yaw.Text = "Yaw:";
-            // 
-            // label_PitchValue
-            // 
-            this.label_PitchValue.AutoSize = true;
-            this.label_PitchValue.Location = new System.Drawing.Point(46, 30);
-            this.label_PitchValue.Name = "label_PitchValue";
-            this.label_PitchValue.Size = new System.Drawing.Size(13, 13);
-            this.label_PitchValue.TabIndex = 5;
-            this.label_PitchValue.Text = "0";
+            this.label_YawValue.AutoSize = true;
+            this.label_YawValue.Location = new System.Drawing.Point(46, 107);
+            this.label_YawValue.Name = "label_YawValue";
+            this.label_YawValue.Size = new System.Drawing.Size(13, 13);
+            this.label_YawValue.TabIndex = 7;
+            this.label_YawValue.Text = "0";
             // 
             // label_RollValue
             // 
@@ -147,14 +134,32 @@
             this.label_RollValue.TabIndex = 6;
             this.label_RollValue.Text = "0";
             // 
-            // label_YawValue
+            // label_PitchValue
             // 
-            this.label_YawValue.AutoSize = true;
-            this.label_YawValue.Location = new System.Drawing.Point(46, 107);
-            this.label_YawValue.Name = "label_YawValue";
-            this.label_YawValue.Size = new System.Drawing.Size(13, 13);
-            this.label_YawValue.TabIndex = 7;
-            this.label_YawValue.Text = "0";
+            this.label_PitchValue.AutoSize = true;
+            this.label_PitchValue.Location = new System.Drawing.Point(46, 30);
+            this.label_PitchValue.Name = "label_PitchValue";
+            this.label_PitchValue.Size = new System.Drawing.Size(13, 13);
+            this.label_PitchValue.TabIndex = 5;
+            this.label_PitchValue.Text = "0";
+            // 
+            // label_Yaw
+            // 
+            this.label_Yaw.AutoSize = true;
+            this.label_Yaw.Location = new System.Drawing.Point(6, 107);
+            this.label_Yaw.Name = "label_Yaw";
+            this.label_Yaw.Size = new System.Drawing.Size(31, 13);
+            this.label_Yaw.TabIndex = 4;
+            this.label_Yaw.Text = "Yaw:";
+            // 
+            // label_Roll
+            // 
+            this.label_Roll.AutoSize = true;
+            this.label_Roll.Location = new System.Drawing.Point(6, 67);
+            this.label_Roll.Name = "label_Roll";
+            this.label_Roll.Size = new System.Drawing.Size(28, 13);
+            this.label_Roll.TabIndex = 3;
+            this.label_Roll.Text = "Roll:";
             // 
             // groupBox1
             // 
@@ -175,17 +180,42 @@
             this.label_Altitude.TabIndex = 0;
             this.label_Altitude.Text = "0";
             // 
-            // Form1
+            // usbControllerSetupToolStripMenuItem
+            // 
+            this.usbControllerSetupToolStripMenuItem.Name = "usbControllerSetupToolStripMenuItem";
+            this.usbControllerSetupToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.usbControllerSetupToolStripMenuItem.Text = "USB Controller Setup";
+            this.usbControllerSetupToolStripMenuItem.Click += new System.EventHandler(this.usbControllerSetupToolStripMenuItem_Click);
+            // 
+            // button_controllerA
+            // 
+            this.button_controllerA.BackColor = System.Drawing.Color.Gray;
+            this.button_controllerA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_controllerA.Location = new System.Drawing.Point(265, 125);
+            this.button_controllerA.Name = "button_controllerA";
+            this.button_controllerA.Size = new System.Drawing.Size(60, 25);
+            this.button_controllerA.TabIndex = 5;
+            this.button_controllerA.Text = "A";
+            this.button_controllerA.UseVisualStyleBackColor = false;
+            // 
+            // timer_GamePad
+            // 
+            this.timer_GamePad.Enabled = true;
+            this.timer_GamePad.Interval = 30;
+            this.timer_GamePad.Tick += new System.EventHandler(this.timer_GamePad_Tick);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(360, 333);
+            this.Controls.Add(this.button_controllerA);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_Attitude);
             this.Controls.Add(this.panel_SerialStatusBox);
             this.Controls.Add(this.menuStrip_Main);
             this.MainMenuStrip = this.menuStrip_Main;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "FCB Ground Station";
             this.menuStrip_Main.ResumeLayout(false);
             this.menuStrip_Main.PerformLayout();
@@ -215,6 +245,9 @@
         private System.Windows.Forms.Label label_PitchValue;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label_Altitude;
+        private System.Windows.Forms.ToolStripMenuItem usbControllerSetupToolStripMenuItem;
+        private System.Windows.Forms.Button button_controllerA;
+        private System.Windows.Forms.Timer timer_GamePad;
     }
 }
 

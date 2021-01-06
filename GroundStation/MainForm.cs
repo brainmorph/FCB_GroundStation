@@ -63,5 +63,25 @@ namespace GroundStation
 
             label_Altitude.Text = String.Format("{0:0.00}", Decimal.Parse(parsed[7]));
         }
+
+        private void usbControllerSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var connectedControllers = BrandonPotter.XBox.XBoxController.GetConnectedControllers();
+            Debug.WriteLine(connectedControllers.ToString());
+        }
+
+        private void timer_GamePad_Tick(object sender, EventArgs e)
+        {
+            /* Update Controller Visualization */
+            if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonAPressed)
+            {
+                //Debug.WriteLine("Button 'A' pressed");
+                button_controllerA.BackColor = Color.Blue;
+            }
+            else
+            {
+                button_controllerA.BackColor = Color.Gray;
+            }
+        }
     }
 }
