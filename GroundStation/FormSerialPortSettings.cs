@@ -13,9 +13,9 @@ namespace GroundStation
 {
     public partial class FormSerialPortSettings : Form
     {
-        Form1Handle handle; // used for accessing objects exposed in Form1
+        MainFormHandle handle; // used for accessing objects exposed in MainForm
 
-        public FormSerialPortSettings(ref Form1Handle form1Struct)
+        public FormSerialPortSettings(ref MainFormHandle form1Struct)
         {
             InitializeComponent();
 

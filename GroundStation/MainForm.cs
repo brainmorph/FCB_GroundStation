@@ -12,19 +12,19 @@ using System.Windows.Forms;
 
 namespace GroundStation
 {
-    public struct Form1Handle
+    public struct MainFormHandle
     {
         public SerialPort serialPort;
         public Panel statusPanel;
         public Timer timer;
     };
 
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
-        Form1Handle formHandle;
+        MainFormHandle formHandle;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 
