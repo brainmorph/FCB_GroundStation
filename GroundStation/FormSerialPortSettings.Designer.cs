@@ -52,6 +52,7 @@
             this.comboBox_BaudRate.Name = "comboBox_BaudRate";
             this.comboBox_BaudRate.Size = new System.Drawing.Size(83, 21);
             this.comboBox_BaudRate.TabIndex = 1;
+            this.comboBox_BaudRate.SelectedIndexChanged += new System.EventHandler(this.comboBox_BaudRate_SelectedIndexChanged);
             // 
             // button_Connect
             // 
@@ -74,9 +75,6 @@
             this.Name = "FormSerialPortSettings";
             this.Text = "Serial Port Settings";
             this.Load += new System.EventHandler(this.FormSerialPortSettings_Load);
-            this.Controls.SetChildIndex(this.label1, 0);
-            this.Controls.SetChildIndex(this.comboBox_BaudRate, 0);
-            this.Controls.SetChildIndex(this.button_Connect, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 

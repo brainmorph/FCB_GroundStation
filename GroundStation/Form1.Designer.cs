@@ -33,6 +33,8 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serialPortSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serialPort_UART = new System.IO.Ports.SerialPort(this.components);
+            this.panel_SerialStatusBox = new System.Windows.Forms.Panel();
+            this.timer_SerialPort = new System.Windows.Forms.Timer(this.components);
             this.menuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,11 +63,24 @@
             this.serialPortSetupToolStripMenuItem.Text = "Serial Port Setup";
             this.serialPortSetupToolStripMenuItem.Click += new System.EventHandler(this.serialPortSetupToolStripMenuItem_Click);
             // 
+            // panel_SerialStatusBox
+            // 
+            this.panel_SerialStatusBox.BackColor = System.Drawing.Color.Red;
+            this.panel_SerialStatusBox.Location = new System.Drawing.Point(113, 80);
+            this.panel_SerialStatusBox.Name = "panel_SerialStatusBox";
+            this.panel_SerialStatusBox.Size = new System.Drawing.Size(167, 117);
+            this.panel_SerialStatusBox.TabIndex = 1;
+            // 
+            // timer_SerialPort
+            // 
+            this.timer_SerialPort.Tick += new System.EventHandler(this.timer_SerialPort_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel_SerialStatusBox);
             this.Controls.Add(this.menuStrip_Main);
             this.MainMenuStrip = this.menuStrip_Main;
             this.Name = "Form1";
@@ -83,6 +98,8 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serialPortSetupToolStripMenuItem;
         public System.IO.Ports.SerialPort serialPort_UART;
+        public System.Windows.Forms.Panel panel_SerialStatusBox;
+        public System.Windows.Forms.Timer timer_SerialPort;
     }
 }
 
