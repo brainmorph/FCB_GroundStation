@@ -49,6 +49,7 @@
             this.timer_GamePad = new System.Windows.Forms.Timer(this.components);
             this.button_controllerB = new System.Windows.Forms.Button();
             this.label_controllerRX = new System.Windows.Forms.Label();
+            this.timer_UpdateGUI = new System.Windows.Forms.Timer(this.components);
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -202,9 +203,7 @@
             // 
             // timer_GamePad
             // 
-            this.timer_GamePad.Enabled = true;
             this.timer_GamePad.Interval = 30;
-            this.timer_GamePad.Tick += new System.EventHandler(this.timer_GamePad_Tick);
             // 
             // button_controllerB
             // 
@@ -225,6 +224,12 @@
             this.label_controllerRX.Size = new System.Drawing.Size(13, 13);
             this.label_controllerRX.TabIndex = 7;
             this.label_controllerRX.Text = "0";
+            // 
+            // timer_UpdateGUI
+            // 
+            this.timer_UpdateGUI.Enabled = true;
+            this.timer_UpdateGUI.Interval = 40;
+            this.timer_UpdateGUI.Tick += new System.EventHandler(this.timer_UpdateGUI_Tick);
             // 
             // MainForm
             // 
@@ -274,6 +279,7 @@
         private System.Windows.Forms.Timer timer_GamePad;
         private System.Windows.Forms.Button button_controllerB;
         private System.Windows.Forms.Label label_controllerRX;
+        private System.Windows.Forms.Timer timer_UpdateGUI;
     }
 }
 
