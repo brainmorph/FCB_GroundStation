@@ -32,6 +32,7 @@
             this.menuStrip_Main = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serialPortSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usbControllerSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serialPort_UART = new System.IO.Ports.SerialPort(this.components);
             this.panel_SerialStatusBox = new System.Windows.Forms.Panel();
             this.timer_SerialPort = new System.Windows.Forms.Timer(this.components);
@@ -44,9 +45,10 @@
             this.label_Roll = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label_Altitude = new System.Windows.Forms.Label();
-            this.usbControllerSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_controllerA = new System.Windows.Forms.Button();
             this.timer_GamePad = new System.Windows.Forms.Timer(this.components);
+            this.button_controllerB = new System.Windows.Forms.Button();
+            this.label_controllerRX = new System.Windows.Forms.Label();
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -77,6 +79,13 @@
             this.serialPortSetupToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.serialPortSetupToolStripMenuItem.Text = "Serial Port Setup";
             this.serialPortSetupToolStripMenuItem.Click += new System.EventHandler(this.serialPortSetupToolStripMenuItem_Click);
+            // 
+            // usbControllerSetupToolStripMenuItem
+            // 
+            this.usbControllerSetupToolStripMenuItem.Name = "usbControllerSetupToolStripMenuItem";
+            this.usbControllerSetupToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.usbControllerSetupToolStripMenuItem.Text = "USB Controller Setup";
+            this.usbControllerSetupToolStripMenuItem.Click += new System.EventHandler(this.usbControllerSetupToolStripMenuItem_Click);
             // 
             // panel_SerialStatusBox
             // 
@@ -180,18 +189,11 @@
             this.label_Altitude.TabIndex = 0;
             this.label_Altitude.Text = "0";
             // 
-            // usbControllerSetupToolStripMenuItem
-            // 
-            this.usbControllerSetupToolStripMenuItem.Name = "usbControllerSetupToolStripMenuItem";
-            this.usbControllerSetupToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.usbControllerSetupToolStripMenuItem.Text = "USB Controller Setup";
-            this.usbControllerSetupToolStripMenuItem.Click += new System.EventHandler(this.usbControllerSetupToolStripMenuItem_Click);
-            // 
             // button_controllerA
             // 
             this.button_controllerA.BackColor = System.Drawing.Color.Gray;
             this.button_controllerA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_controllerA.Location = new System.Drawing.Point(265, 125);
+            this.button_controllerA.Location = new System.Drawing.Point(265, 127);
             this.button_controllerA.Name = "button_controllerA";
             this.button_controllerA.Size = new System.Drawing.Size(60, 25);
             this.button_controllerA.TabIndex = 5;
@@ -204,11 +206,33 @@
             this.timer_GamePad.Interval = 30;
             this.timer_GamePad.Tick += new System.EventHandler(this.timer_GamePad_Tick);
             // 
+            // button_controllerB
+            // 
+            this.button_controllerB.BackColor = System.Drawing.Color.Gray;
+            this.button_controllerB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_controllerB.Location = new System.Drawing.Point(265, 164);
+            this.button_controllerB.Name = "button_controllerB";
+            this.button_controllerB.Size = new System.Drawing.Size(60, 25);
+            this.button_controllerB.TabIndex = 6;
+            this.button_controllerB.Text = "B";
+            this.button_controllerB.UseVisualStyleBackColor = false;
+            // 
+            // label_controllerRX
+            // 
+            this.label_controllerRX.AutoSize = true;
+            this.label_controllerRX.Location = new System.Drawing.Point(276, 204);
+            this.label_controllerRX.Name = "label_controllerRX";
+            this.label_controllerRX.Size = new System.Drawing.Size(13, 13);
+            this.label_controllerRX.TabIndex = 7;
+            this.label_controllerRX.Text = "0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(360, 333);
+            this.Controls.Add(this.label_controllerRX);
+            this.Controls.Add(this.button_controllerB);
             this.Controls.Add(this.button_controllerA);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_Attitude);
@@ -248,6 +272,8 @@
         private System.Windows.Forms.ToolStripMenuItem usbControllerSetupToolStripMenuItem;
         private System.Windows.Forms.Button button_controllerA;
         private System.Windows.Forms.Timer timer_GamePad;
+        private System.Windows.Forms.Button button_controllerB;
+        private System.Windows.Forms.Label label_controllerRX;
     }
 }
 

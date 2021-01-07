@@ -77,6 +77,7 @@ namespace GroundStation
 
         private void timer_GamePad_Tick(object sender, EventArgs e)
         {
+            /* Turn off timer if controller is not plugged in */
             if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().Count() <= 0)
             {
                 timer_GamePad.Enabled = false;
@@ -94,6 +95,19 @@ namespace GroundStation
             {
                 button_controllerA.BackColor = Color.Gray;
             }
+
+            if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonBPressed)
+            {
+                //Debug.WriteLine("Button 'A' pressed");
+                button_controllerB.BackColor = Color.Blue;
+            }
+            else
+            {
+                button_controllerB.BackColor = Color.Gray;
+            }
+
+            
+            label_controllerRX.Text = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ThumbRightX.ToString();
         }
     }
 }
