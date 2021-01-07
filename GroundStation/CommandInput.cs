@@ -35,7 +35,7 @@ namespace GroundStation
             commands.aux2 = false;
 
             /* Create timer */
-            timer = new Timer(300); // create with interval in [ms]
+            timer = new Timer(50); // create with interval in [ms]
             timer.AutoReset = true;
             timer.Enabled = true;
 
@@ -60,13 +60,12 @@ namespace GroundStation
             commands.yawCMD = (float)BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ThumbLeftX;
         }
 
-
-        /* Accessor Methods */
-        
+        /* Public Methods */
         public bool ControllerIsConnected()
         {
             var connectedControllers = BrandonPotter.XBox.XBoxController.GetConnectedControllers();
             Debug.WriteLine(connectedControllers.ToString());
+            Debug.WriteLine($"Available controllers: {connectedControllers.Count()}");
 
             if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().Count() > 0)
                 return true;
@@ -77,6 +76,7 @@ namespace GroundStation
         {
             timer.Enabled = true;
         }
+
         public float GetThrottleInput()
         {
             return commands.throttleCMD;

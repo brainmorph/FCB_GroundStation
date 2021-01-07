@@ -76,20 +76,17 @@ namespace GroundStation
             }
         }
 
-       // private void timer_GamePad_Tick(object sender, EventArgs e)
-       // {
-       //     /* Turn off timer if controller is not plugged in */
-       //     if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().Count() <= 0)
-       //     {
-       //         timer_GamePad.Enabled = false;
-       //         return;
-       //     }
-       //}
-
         private void timer_UpdateGUI_Tick(object sender, EventArgs e)
         {
+
+
             /* Update Controller Visualization */
-            if(ci.GetAux1Input() == true)
+            if (!ci.ControllerIsConnected())
+            {
+                return; // skip GUI update if controller is unplugged
+            }
+
+            if (ci.GetAux1Input() == true)
                 button_controllerA.BackColor = Color.Blue;
             else
                 button_controllerA.BackColor = Color.Gray;
@@ -102,31 +99,7 @@ namespace GroundStation
 
 
             label_controllerRX.Text = ci.GetThrottleInput().ToString();
-
-
-            //if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonAPressed)
-            //{
-            //    //Debug.WriteLine("Button 'A' pressed");
-            //    button_controllerA.BackColor = Color.Blue;
-            //}
-            //else
-            //{
-            //    button_controllerA.BackColor = Color.Gray;
-            //}
-
-            //if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonBPressed)
-            //{
-            //    //Debug.WriteLine("Button 'A' pressed");
-            //    button_controllerB.BackColor = Color.Blue;
-            //}
-            //else
-            //{
-            //    button_controllerB.BackColor = Color.Gray;
-            //}
-
-
-            //label_controllerRX.Text = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ThumbRightX.ToString();
-
+            trackBar_Throttle.Value = (int)ci.GetThrottleInput();
         }
     }
 }

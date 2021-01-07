@@ -46,13 +46,14 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label_Altitude = new System.Windows.Forms.Label();
             this.button_controllerA = new System.Windows.Forms.Button();
-            this.timer_GamePad = new System.Windows.Forms.Timer(this.components);
             this.button_controllerB = new System.Windows.Forms.Button();
             this.label_controllerRX = new System.Windows.Forms.Label();
             this.timer_UpdateGUI = new System.Windows.Forms.Timer(this.components);
+            this.trackBar_Throttle = new System.Windows.Forms.TrackBar();
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Throttle)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip_Main
@@ -198,12 +199,8 @@
             this.button_controllerA.Name = "button_controllerA";
             this.button_controllerA.Size = new System.Drawing.Size(60, 25);
             this.button_controllerA.TabIndex = 5;
-            this.button_controllerA.Text = "A";
+            this.button_controllerA.Text = "Aux 1";
             this.button_controllerA.UseVisualStyleBackColor = false;
-            // 
-            // timer_GamePad
-            // 
-            this.timer_GamePad.Interval = 30;
             // 
             // button_controllerB
             // 
@@ -213,13 +210,13 @@
             this.button_controllerB.Name = "button_controllerB";
             this.button_controllerB.Size = new System.Drawing.Size(60, 25);
             this.button_controllerB.TabIndex = 6;
-            this.button_controllerB.Text = "B";
+            this.button_controllerB.Text = "Aux 2";
             this.button_controllerB.UseVisualStyleBackColor = false;
             // 
             // label_controllerRX
             // 
             this.label_controllerRX.AutoSize = true;
-            this.label_controllerRX.Location = new System.Drawing.Point(276, 204);
+            this.label_controllerRX.Location = new System.Drawing.Point(286, 204);
             this.label_controllerRX.Name = "label_controllerRX";
             this.label_controllerRX.Size = new System.Drawing.Size(13, 13);
             this.label_controllerRX.TabIndex = 7;
@@ -231,11 +228,22 @@
             this.timer_UpdateGUI.Interval = 40;
             this.timer_UpdateGUI.Tick += new System.EventHandler(this.timer_UpdateGUI_Tick);
             // 
+            // trackBar_Throttle
+            // 
+            this.trackBar_Throttle.BackColor = System.Drawing.SystemColors.Control;
+            this.trackBar_Throttle.Location = new System.Drawing.Point(265, 226);
+            this.trackBar_Throttle.Maximum = 100;
+            this.trackBar_Throttle.Name = "trackBar_Throttle";
+            this.trackBar_Throttle.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBar_Throttle.Size = new System.Drawing.Size(45, 83);
+            this.trackBar_Throttle.TabIndex = 9;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(360, 333);
+            this.Controls.Add(this.trackBar_Throttle);
             this.Controls.Add(this.label_controllerRX);
             this.Controls.Add(this.button_controllerB);
             this.Controls.Add(this.button_controllerA);
@@ -252,6 +260,7 @@
             this.groupBox_Attitude.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Throttle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,10 +285,10 @@
         private System.Windows.Forms.Label label_Altitude;
         private System.Windows.Forms.ToolStripMenuItem usbControllerSetupToolStripMenuItem;
         private System.Windows.Forms.Button button_controllerA;
-        private System.Windows.Forms.Timer timer_GamePad;
         private System.Windows.Forms.Button button_controllerB;
         private System.Windows.Forms.Label label_controllerRX;
         private System.Windows.Forms.Timer timer_UpdateGUI;
+        private System.Windows.Forms.TrackBar trackBar_Throttle;
     }
 }
 
