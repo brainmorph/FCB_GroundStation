@@ -57,18 +57,18 @@ namespace GroundStation
 
         private void timer_UpdateGUI_Tick(object sender, EventArgs e)
         {
+
             /* Update Quad State Components */
             radio.ReadUART();
             label_RollValue.Text = String.Format("{0:0.00}", radio.GetRoll());
             label_PitchValue.Text = String.Format("{0:0.00}", radio.GetPitch());
             label_Altitude.Text = String.Format("{0:0.00}", radio.GetAltitude());
-            
-            /* Update Controller Visualization */
-            if (!ci.ControllerIsConnected())
-            {
-                return; // skip GUI update if controller is unplugged
-            }
 
+            /* Update Controller Visualization */
+            //if (!ci.ControllerIsConnected())
+            //{
+            //    return; // skip GUI update if controller is unplugged
+            //}
             if (ci.GetAux1Input() == true)
                 button_controllerA.BackColor = Color.Yellow;
             else
