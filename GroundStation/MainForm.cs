@@ -38,36 +38,12 @@ namespace GroundStation
         {
 
             FormSerialPortSettings s = new FormSerialPortSettings(ref formHandle);
-            s.ShowDialog();     // Causes background window to freeze
+            s.ShowDialog();     // Causes background window to not accept input
 
             if (radio.OpenSerialPort() != 0)
                 panel_SerialStatusBox.BackColor = Color.Green;
-
-        }
-
-        private void timer_SerialPort_Tick(object sender, EventArgs e)
-        {
-            //panel_SerialStatusBox.BackColor = Color.Green;
-
-            //String line = serialPort_UART.ReadLine();
-            ////Debug.WriteLine(line);
-
-            ///* Parse UART data */
-            //String[] parsed = line.Split(',');
-
-            ///* Throw out incorrect packets */
-            //if (parsed.Length != 8 || !parsed[0].Equals("ok"))
-            //    return;
-
-            //serialPort_UART.DiscardInBuffer(); // clear the rest of the buffer since our GUI update rate is much slower than UART
-
-            //// TODO: decide location through JSON packets
-            //label_PitchValue.Text = String.Format("{0:0.00}", Decimal.Parse(parsed[4]));
-            //// TODO: decide location through JSON packets
-            //label_RollValue.Text = String.Format("{0:0.00}", Decimal.Parse(parsed[1])); 
-            ////label_YawValue.Text = ??
-
-            //label_Altitude.Text = String.Format("{0:0.00}", Decimal.Parse(parsed[7]));
+            else
+                panel_SerialStatusBox.BackColor = Color.Red;
         }
         
         /* Handler for USB Controller menu button press */

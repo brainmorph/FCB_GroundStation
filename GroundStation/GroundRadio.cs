@@ -38,6 +38,10 @@ namespace GroundStation
 
         public int OpenSerialPort()
         {
+            /* Check if serial port is already open */
+            if (port.IsOpen)
+                return 1;
+
             /* Open port */
             try
             {

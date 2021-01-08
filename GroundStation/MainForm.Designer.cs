@@ -33,7 +33,6 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serialPortSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usbControllerSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.serialPort_UART = new System.IO.Ports.SerialPort(this.components);
             this.panel_SerialStatusBox = new System.Windows.Forms.Panel();
             this.label_Pitch = new System.Windows.Forms.Label();
             this.groupBox_Attitude = new System.Windows.Forms.GroupBox();
@@ -265,7 +264,6 @@
         private System.Windows.Forms.MenuStrip menuStrip_Main;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serialPortSetupToolStripMenuItem;
-        public System.IO.Ports.SerialPort serialPort_UART;
         public System.Windows.Forms.Panel panel_SerialStatusBox;
         private System.Windows.Forms.Label label_Pitch;
         private System.Windows.Forms.GroupBox groupBox_Attitude;
