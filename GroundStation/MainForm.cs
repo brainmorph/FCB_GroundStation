@@ -70,19 +70,21 @@ namespace GroundStation
             }
 
             if (ci.GetAux1Input() == true)
-                button_controllerA.BackColor = Color.Blue;
+                button_controllerA.BackColor = Color.Yellow;
             else
                 button_controllerA.BackColor = Color.Gray;
 
 
             if (ci.GetAux2Input() == true)
-                button_controllerB.BackColor = Color.Blue;
+                button_controllerB.BackColor = Color.Yellow;
             else
                 button_controllerB.BackColor = Color.Gray;
 
-
-            label_controllerRX.Text = ci.GetThrottleInput().ToString();
+            
             trackBar_Throttle.Value = (int)ci.GetThrottleInput();
+            trackBar_Yaw.Value = (int)ci.GetYawInput();
+            trackBar_Pitch.Value = (int)ci.GetPitchInput();
+            trackBar_Roll.Value = (int)ci.GetRollInput();
         }
     }
 }

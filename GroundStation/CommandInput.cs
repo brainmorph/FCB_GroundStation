@@ -35,7 +35,7 @@ namespace GroundStation
             commands.aux2 = false;
 
             /* Create timer */
-            timer = new Timer(50); // create with interval in [ms]
+            timer = new Timer(30); // create with interval in [ms]
             timer.AutoReset = true;
             timer.Enabled = true;
 

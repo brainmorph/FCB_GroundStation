@@ -45,13 +45,22 @@
             this.label_Altitude = new System.Windows.Forms.Label();
             this.button_controllerA = new System.Windows.Forms.Button();
             this.button_controllerB = new System.Windows.Forms.Button();
-            this.label_controllerRX = new System.Windows.Forms.Label();
             this.timer_UpdateGUI = new System.Windows.Forms.Timer(this.components);
             this.trackBar_Throttle = new System.Windows.Forms.TrackBar();
+            this.trackBar_Yaw = new System.Windows.Forms.TrackBar();
+            this.trackBar_Roll = new System.Windows.Forms.TrackBar();
+            this.trackBar_Pitch = new System.Windows.Forms.TrackBar();
+            this.groupBox_ControlInput = new System.Windows.Forms.GroupBox();
+            this.label_ThrustYaw = new System.Windows.Forms.Label();
+            this.label_PitchRoll = new System.Windows.Forms.Label();
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_Throttle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Yaw)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Roll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Pitch)).BeginInit();
+            this.groupBox_ControlInput.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip_Main
@@ -60,7 +69,7 @@
             this.settingsToolStripMenuItem});
             this.menuStrip_Main.Location = new System.Drawing.Point(0, 0);
             this.menuStrip_Main.Name = "menuStrip_Main";
-            this.menuStrip_Main.Size = new System.Drawing.Size(360, 24);
+            this.menuStrip_Main.Size = new System.Drawing.Size(703, 24);
             this.menuStrip_Main.TabIndex = 0;
             this.menuStrip_Main.Text = "menuStrip1";
             // 
@@ -91,7 +100,7 @@
             // 
             this.panel_SerialStatusBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_SerialStatusBox.BackColor = System.Drawing.Color.Red;
-            this.panel_SerialStatusBox.Location = new System.Drawing.Point(313, 27);
+            this.panel_SerialStatusBox.Location = new System.Drawing.Point(656, 27);
             this.panel_SerialStatusBox.Name = "panel_SerialStatusBox";
             this.panel_SerialStatusBox.Size = new System.Drawing.Size(35, 35);
             this.panel_SerialStatusBox.TabIndex = 1;
@@ -99,9 +108,10 @@
             // label_Pitch
             // 
             this.label_Pitch.AutoSize = true;
+            this.label_Pitch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Pitch.Location = new System.Drawing.Point(6, 30);
             this.label_Pitch.Name = "label_Pitch";
-            this.label_Pitch.Size = new System.Drawing.Size(34, 13);
+            this.label_Pitch.Size = new System.Drawing.Size(67, 26);
             this.label_Pitch.TabIndex = 2;
             this.label_Pitch.Text = "Pitch:";
             // 
@@ -113,9 +123,9 @@
             this.groupBox_Attitude.Controls.Add(this.label_Yaw);
             this.groupBox_Attitude.Controls.Add(this.label_Roll);
             this.groupBox_Attitude.Controls.Add(this.label_Pitch);
-            this.groupBox_Attitude.Location = new System.Drawing.Point(12, 97);
+            this.groupBox_Attitude.Location = new System.Drawing.Point(12, 84);
             this.groupBox_Attitude.Name = "groupBox_Attitude";
-            this.groupBox_Attitude.Size = new System.Drawing.Size(131, 147);
+            this.groupBox_Attitude.Size = new System.Drawing.Size(199, 152);
             this.groupBox_Attitude.TabIndex = 3;
             this.groupBox_Attitude.TabStop = false;
             this.groupBox_Attitude.Text = "Angle Error [degrees]";
@@ -123,54 +133,59 @@
             // label_YawValue
             // 
             this.label_YawValue.AutoSize = true;
-            this.label_YawValue.Location = new System.Drawing.Point(46, 107);
+            this.label_YawValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_YawValue.Location = new System.Drawing.Point(90, 103);
             this.label_YawValue.Name = "label_YawValue";
-            this.label_YawValue.Size = new System.Drawing.Size(13, 13);
+            this.label_YawValue.Size = new System.Drawing.Size(24, 26);
             this.label_YawValue.TabIndex = 7;
             this.label_YawValue.Text = "0";
             // 
             // label_RollValue
             // 
             this.label_RollValue.AutoSize = true;
-            this.label_RollValue.Location = new System.Drawing.Point(46, 67);
+            this.label_RollValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_RollValue.Location = new System.Drawing.Point(90, 67);
             this.label_RollValue.Name = "label_RollValue";
-            this.label_RollValue.Size = new System.Drawing.Size(13, 13);
+            this.label_RollValue.Size = new System.Drawing.Size(24, 26);
             this.label_RollValue.TabIndex = 6;
             this.label_RollValue.Text = "0";
             // 
             // label_PitchValue
             // 
             this.label_PitchValue.AutoSize = true;
-            this.label_PitchValue.Location = new System.Drawing.Point(46, 30);
+            this.label_PitchValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_PitchValue.Location = new System.Drawing.Point(90, 30);
             this.label_PitchValue.Name = "label_PitchValue";
-            this.label_PitchValue.Size = new System.Drawing.Size(13, 13);
+            this.label_PitchValue.Size = new System.Drawing.Size(24, 26);
             this.label_PitchValue.TabIndex = 5;
             this.label_PitchValue.Text = "0";
             // 
             // label_Yaw
             // 
             this.label_Yaw.AutoSize = true;
-            this.label_Yaw.Location = new System.Drawing.Point(6, 107);
+            this.label_Yaw.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Yaw.Location = new System.Drawing.Point(6, 103);
             this.label_Yaw.Name = "label_Yaw";
-            this.label_Yaw.Size = new System.Drawing.Size(31, 13);
+            this.label_Yaw.Size = new System.Drawing.Size(62, 26);
             this.label_Yaw.TabIndex = 4;
             this.label_Yaw.Text = "Yaw:";
             // 
             // label_Roll
             // 
             this.label_Roll.AutoSize = true;
+            this.label_Roll.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Roll.Location = new System.Drawing.Point(6, 67);
             this.label_Roll.Name = "label_Roll";
-            this.label_Roll.Size = new System.Drawing.Size(28, 13);
+            this.label_Roll.Size = new System.Drawing.Size(56, 26);
             this.label_Roll.TabIndex = 3;
             this.label_Roll.Text = "Roll:";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label_Altitude);
-            this.groupBox1.Location = new System.Drawing.Point(12, 250);
+            this.groupBox1.Location = new System.Drawing.Point(12, 259);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(131, 59);
+            this.groupBox1.Size = new System.Drawing.Size(199, 80);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Altitude [meters]";
@@ -178,9 +193,10 @@
             // label_Altitude
             // 
             this.label_Altitude.AutoSize = true;
-            this.label_Altitude.Location = new System.Drawing.Point(46, 26);
+            this.label_Altitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Altitude.Location = new System.Drawing.Point(90, 27);
             this.label_Altitude.Name = "label_Altitude";
-            this.label_Altitude.Size = new System.Drawing.Size(13, 13);
+            this.label_Altitude.Size = new System.Drawing.Size(24, 26);
             this.label_Altitude.TabIndex = 0;
             this.label_Altitude.Text = "0";
             // 
@@ -188,7 +204,7 @@
             // 
             this.button_controllerA.BackColor = System.Drawing.Color.Gray;
             this.button_controllerA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_controllerA.Location = new System.Drawing.Point(265, 127);
+            this.button_controllerA.Location = new System.Drawing.Point(398, 30);
             this.button_controllerA.Name = "button_controllerA";
             this.button_controllerA.Size = new System.Drawing.Size(60, 25);
             this.button_controllerA.TabIndex = 5;
@@ -199,21 +215,12 @@
             // 
             this.button_controllerB.BackColor = System.Drawing.Color.Gray;
             this.button_controllerB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_controllerB.Location = new System.Drawing.Point(265, 164);
+            this.button_controllerB.Location = new System.Drawing.Point(398, 61);
             this.button_controllerB.Name = "button_controllerB";
             this.button_controllerB.Size = new System.Drawing.Size(60, 25);
             this.button_controllerB.TabIndex = 6;
             this.button_controllerB.Text = "Aux 2";
             this.button_controllerB.UseVisualStyleBackColor = false;
-            // 
-            // label_controllerRX
-            // 
-            this.label_controllerRX.AutoSize = true;
-            this.label_controllerRX.Location = new System.Drawing.Point(286, 204);
-            this.label_controllerRX.Name = "label_controllerRX";
-            this.label_controllerRX.Size = new System.Drawing.Size(13, 13);
-            this.label_controllerRX.TabIndex = 7;
-            this.label_controllerRX.Text = "0";
             // 
             // timer_UpdateGUI
             // 
@@ -224,22 +231,84 @@
             // trackBar_Throttle
             // 
             this.trackBar_Throttle.BackColor = System.Drawing.SystemColors.Control;
-            this.trackBar_Throttle.Location = new System.Drawing.Point(265, 226);
+            this.trackBar_Throttle.Location = new System.Drawing.Point(37, 19);
             this.trackBar_Throttle.Maximum = 100;
             this.trackBar_Throttle.Name = "trackBar_Throttle";
             this.trackBar_Throttle.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar_Throttle.Size = new System.Drawing.Size(45, 83);
+            this.trackBar_Throttle.Size = new System.Drawing.Size(45, 120);
             this.trackBar_Throttle.TabIndex = 9;
+            // 
+            // trackBar_Yaw
+            // 
+            this.trackBar_Yaw.BackColor = System.Drawing.SystemColors.Control;
+            this.trackBar_Yaw.Location = new System.Drawing.Point(6, 156);
+            this.trackBar_Yaw.Maximum = 100;
+            this.trackBar_Yaw.Name = "trackBar_Yaw";
+            this.trackBar_Yaw.Size = new System.Drawing.Size(120, 45);
+            this.trackBar_Yaw.TabIndex = 10;
+            // 
+            // trackBar_Roll
+            // 
+            this.trackBar_Roll.BackColor = System.Drawing.SystemColors.Control;
+            this.trackBar_Roll.Location = new System.Drawing.Point(244, 156);
+            this.trackBar_Roll.Maximum = 100;
+            this.trackBar_Roll.Name = "trackBar_Roll";
+            this.trackBar_Roll.Size = new System.Drawing.Size(120, 45);
+            this.trackBar_Roll.TabIndex = 12;
+            // 
+            // trackBar_Pitch
+            // 
+            this.trackBar_Pitch.BackColor = System.Drawing.SystemColors.Control;
+            this.trackBar_Pitch.Location = new System.Drawing.Point(287, 19);
+            this.trackBar_Pitch.Maximum = 100;
+            this.trackBar_Pitch.Name = "trackBar_Pitch";
+            this.trackBar_Pitch.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBar_Pitch.Size = new System.Drawing.Size(45, 120);
+            this.trackBar_Pitch.TabIndex = 11;
+            // 
+            // groupBox_ControlInput
+            // 
+            this.groupBox_ControlInput.Controls.Add(this.label_PitchRoll);
+            this.groupBox_ControlInput.Controls.Add(this.label_ThrustYaw);
+            this.groupBox_ControlInput.Controls.Add(this.button_controllerB);
+            this.groupBox_ControlInput.Controls.Add(this.trackBar_Pitch);
+            this.groupBox_ControlInput.Controls.Add(this.button_controllerA);
+            this.groupBox_ControlInput.Controls.Add(this.trackBar_Roll);
+            this.groupBox_ControlInput.Controls.Add(this.trackBar_Throttle);
+            this.groupBox_ControlInput.Controls.Add(this.trackBar_Yaw);
+            this.groupBox_ControlInput.Location = new System.Drawing.Point(217, 84);
+            this.groupBox_ControlInput.Name = "groupBox_ControlInput";
+            this.groupBox_ControlInput.Size = new System.Drawing.Size(474, 255);
+            this.groupBox_ControlInput.TabIndex = 13;
+            this.groupBox_ControlInput.TabStop = false;
+            this.groupBox_ControlInput.Text = "Control Input";
+            // 
+            // label_ThrustYaw
+            // 
+            this.label_ThrustYaw.AutoSize = true;
+            this.label_ThrustYaw.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ThrustYaw.Location = new System.Drawing.Point(6, 204);
+            this.label_ThrustYaw.Name = "label_ThrustYaw";
+            this.label_ThrustYaw.Size = new System.Drawing.Size(122, 26);
+            this.label_ThrustYaw.TabIndex = 13;
+            this.label_ThrustYaw.Text = "Thrust/Yaw";
+            // 
+            // label_PitchRoll
+            // 
+            this.label_PitchRoll.AutoSize = true;
+            this.label_PitchRoll.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_PitchRoll.Location = new System.Drawing.Point(248, 204);
+            this.label_PitchRoll.Name = "label_PitchRoll";
+            this.label_PitchRoll.Size = new System.Drawing.Size(105, 26);
+            this.label_PitchRoll.TabIndex = 14;
+            this.label_PitchRoll.Text = "Pitch/Roll";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 333);
-            this.Controls.Add(this.trackBar_Throttle);
-            this.Controls.Add(this.label_controllerRX);
-            this.Controls.Add(this.button_controllerB);
-            this.Controls.Add(this.button_controllerA);
+            this.ClientSize = new System.Drawing.Size(703, 351);
+            this.Controls.Add(this.groupBox_ControlInput);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_Attitude);
             this.Controls.Add(this.panel_SerialStatusBox);
@@ -254,6 +323,11 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_Throttle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Yaw)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Roll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Pitch)).EndInit();
+            this.groupBox_ControlInput.ResumeLayout(false);
+            this.groupBox_ControlInput.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,9 +351,14 @@
         private System.Windows.Forms.ToolStripMenuItem usbControllerSetupToolStripMenuItem;
         private System.Windows.Forms.Button button_controllerA;
         private System.Windows.Forms.Button button_controllerB;
-        private System.Windows.Forms.Label label_controllerRX;
         private System.Windows.Forms.Timer timer_UpdateGUI;
         private System.Windows.Forms.TrackBar trackBar_Throttle;
+        private System.Windows.Forms.TrackBar trackBar_Yaw;
+        private System.Windows.Forms.TrackBar trackBar_Roll;
+        private System.Windows.Forms.TrackBar trackBar_Pitch;
+        private System.Windows.Forms.GroupBox groupBox_ControlInput;
+        private System.Windows.Forms.Label label_PitchRoll;
+        private System.Windows.Forms.Label label_ThrustYaw;
     }
 }
 
