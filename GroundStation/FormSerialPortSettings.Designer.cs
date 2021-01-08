@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_BaudRate = new System.Windows.Forms.ComboBox();
-            this.button_Connect = new System.Windows.Forms.Button();
+            this.button_Apply = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -54,22 +54,22 @@
             this.comboBox_BaudRate.TabIndex = 1;
             this.comboBox_BaudRate.SelectedIndexChanged += new System.EventHandler(this.comboBox_BaudRate_SelectedIndexChanged);
             // 
-            // button_Connect
+            // button_Apply
             // 
-            this.button_Connect.Location = new System.Drawing.Point(103, 138);
-            this.button_Connect.Name = "button_Connect";
-            this.button_Connect.Size = new System.Drawing.Size(75, 23);
-            this.button_Connect.TabIndex = 2;
-            this.button_Connect.Text = "Connect";
-            this.button_Connect.UseVisualStyleBackColor = true;
-            this.button_Connect.Click += new System.EventHandler(this.button_Connect_Click);
+            this.button_Apply.Location = new System.Drawing.Point(103, 138);
+            this.button_Apply.Name = "button_Apply";
+            this.button_Apply.Size = new System.Drawing.Size(75, 23);
+            this.button_Apply.TabIndex = 2;
+            this.button_Apply.Text = "Connect";
+            this.button_Apply.UseVisualStyleBackColor = true;
+            this.button_Apply.Click += new System.EventHandler(this.button_Connect_Click);
             // 
             // FormSerialPortSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(279, 173);
-            this.Controls.Add(this.button_Connect);
+            this.Controls.Add(this.button_Apply);
             this.Controls.Add(this.comboBox_BaudRate);
             this.Controls.Add(this.label1);
             this.Name = "FormSerialPortSettings";
@@ -84,6 +84,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_BaudRate;
-        private System.Windows.Forms.Button button_Connect;
+        private System.Windows.Forms.Button button_Apply;
     }
 }

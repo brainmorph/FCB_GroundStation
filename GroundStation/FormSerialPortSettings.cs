@@ -38,31 +38,7 @@ namespace GroundStation
             handle.serialPort.BaudRate = int.Parse(comboBox_BaudRate.Text);
             handle.serialPort.PortName = "COM9"; // TODO: set this dynamically
 
-            /* Open port */
-            try
-            {
-                handle.serialPort.Open();
-            }
-            catch
-            {
-                Debug.WriteLine("Cannot open serial port.");
-            }
-
-            
-            /* Check port opened successfully */
-            if (handle.serialPort.IsOpen)
-            {
-                Debug.WriteLine("Connected to serial.");
-                handle.statusPanel.BackColor = Color.Green;
-            }
-            else
-            {
-                Debug.WriteLine("Cannot open serial port.");
-                return;
-            }
-
-            // Start timer to read serial
-            handle.timer.Enabled = true;
+            this.Close();
         }
 
         private void comboBox_BaudRate_SelectedIndexChanged(object sender, EventArgs e)

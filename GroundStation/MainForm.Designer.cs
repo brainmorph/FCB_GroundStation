@@ -35,7 +35,6 @@
             this.usbControllerSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serialPort_UART = new System.IO.Ports.SerialPort(this.components);
             this.panel_SerialStatusBox = new System.Windows.Forms.Panel();
-            this.timer_SerialPort = new System.Windows.Forms.Timer(this.components);
             this.label_Pitch = new System.Windows.Forms.Label();
             this.groupBox_Attitude = new System.Windows.Forms.GroupBox();
             this.label_YawValue = new System.Windows.Forms.Label();
@@ -97,11 +96,6 @@
             this.panel_SerialStatusBox.Name = "panel_SerialStatusBox";
             this.panel_SerialStatusBox.Size = new System.Drawing.Size(35, 35);
             this.panel_SerialStatusBox.TabIndex = 1;
-            // 
-            // timer_SerialPort
-            // 
-            this.timer_SerialPort.Interval = 30;
-            this.timer_SerialPort.Tick += new System.EventHandler(this.timer_SerialPort_Tick);
             // 
             // label_Pitch
             // 
@@ -273,7 +267,6 @@
         private System.Windows.Forms.ToolStripMenuItem serialPortSetupToolStripMenuItem;
         public System.IO.Ports.SerialPort serialPort_UART;
         public System.Windows.Forms.Panel panel_SerialStatusBox;
-        public System.Windows.Forms.Timer timer_SerialPort;
         private System.Windows.Forms.Label label_Pitch;
         private System.Windows.Forms.GroupBox groupBox_Attitude;
         private System.Windows.Forms.Label label_Yaw;

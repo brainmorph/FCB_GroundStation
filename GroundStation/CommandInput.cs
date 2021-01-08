@@ -64,8 +64,8 @@ namespace GroundStation
         public bool ControllerIsConnected()
         {
             var connectedControllers = BrandonPotter.XBox.XBoxController.GetConnectedControllers();
-            Debug.WriteLine(connectedControllers.ToString());
-            Debug.WriteLine($"Available controllers: {connectedControllers.Count()}");
+            //Debug.WriteLine(connectedControllers.ToString());
+            //Debug.WriteLine($"Available controllers: {connectedControllers.Count()}");
 
             if (BrandonPotter.XBox.XBoxController.GetConnectedControllers().Count() > 0)
                 return true;
