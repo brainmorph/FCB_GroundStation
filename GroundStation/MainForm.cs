@@ -41,7 +41,10 @@ namespace GroundStation
             s.ShowDialog();     // Causes background window to not accept input
 
             if (radio.OpenSerialPort() != 0)
+            {
                 panel_SerialStatusBox.BackColor = Color.Green;
+                radio.EnableTimer();
+            }
             else
                 panel_SerialStatusBox.BackColor = Color.Red;
         }
@@ -59,10 +62,11 @@ namespace GroundStation
         {
 
             /* Update Quad State Components */
-            radio.ReadUART();
-            label_RollValue.Text = String.Format("{0:0.00}", radio.GetRoll());
-            label_PitchValue.Text = String.Format("{0:0.00}", radio.GetPitch());
             label_Altitude.Text = String.Format("{0:0.00}", radio.GetAltitude());
+            label_PitchValue.Text = String.Format("{0:0.00}", radio.GetPitch());
+            label_RollValue.Text = String.Format("{0:0.00}", radio.GetRoll());
+            label_YawValue.Text = String.Format("{0:0.00}", radio.GetYaw());
+            label_RadioPacketsDropped.Text = String.Format("{0:00}", radio.GetLostPacketRatio());
 
             /* Update Controller Visualization */
             //if (!ci.ControllerIsConnected())

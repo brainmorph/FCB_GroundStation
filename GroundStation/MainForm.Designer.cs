@@ -51,8 +51,9 @@
             this.trackBar_Roll = new System.Windows.Forms.TrackBar();
             this.trackBar_Pitch = new System.Windows.Forms.TrackBar();
             this.groupBox_ControlInput = new System.Windows.Forms.GroupBox();
-            this.label_ThrustYaw = new System.Windows.Forms.Label();
             this.label_PitchRoll = new System.Windows.Forms.Label();
+            this.label_ThrustYaw = new System.Windows.Forms.Label();
+            this.label_RadioPacketsDropped = new System.Windows.Forms.Label();
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -225,7 +226,7 @@
             // timer_UpdateGUI
             // 
             this.timer_UpdateGUI.Enabled = true;
-            this.timer_UpdateGUI.Interval = 40;
+            this.timer_UpdateGUI.Interval = 50;
             this.timer_UpdateGUI.Tick += new System.EventHandler(this.timer_UpdateGUI_Tick);
             // 
             // trackBar_Throttle
@@ -283,16 +284,6 @@
             this.groupBox_ControlInput.TabStop = false;
             this.groupBox_ControlInput.Text = "Control Input";
             // 
-            // label_ThrustYaw
-            // 
-            this.label_ThrustYaw.AutoSize = true;
-            this.label_ThrustYaw.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_ThrustYaw.Location = new System.Drawing.Point(6, 204);
-            this.label_ThrustYaw.Name = "label_ThrustYaw";
-            this.label_ThrustYaw.Size = new System.Drawing.Size(122, 26);
-            this.label_ThrustYaw.TabIndex = 13;
-            this.label_ThrustYaw.Text = "Thrust/Yaw";
-            // 
             // label_PitchRoll
             // 
             this.label_PitchRoll.AutoSize = true;
@@ -303,11 +294,32 @@
             this.label_PitchRoll.TabIndex = 14;
             this.label_PitchRoll.Text = "Pitch/Roll";
             // 
+            // label_ThrustYaw
+            // 
+            this.label_ThrustYaw.AutoSize = true;
+            this.label_ThrustYaw.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ThrustYaw.Location = new System.Drawing.Point(6, 204);
+            this.label_ThrustYaw.Name = "label_ThrustYaw";
+            this.label_ThrustYaw.Size = new System.Drawing.Size(122, 26);
+            this.label_ThrustYaw.TabIndex = 13;
+            this.label_ThrustYaw.Text = "Thrust/Yaw";
+            // 
+            // label_RadioPacketsDropped
+            // 
+            this.label_RadioPacketsDropped.AutoSize = true;
+            this.label_RadioPacketsDropped.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_RadioPacketsDropped.Location = new System.Drawing.Point(525, 33);
+            this.label_RadioPacketsDropped.Name = "label_RadioPacketsDropped";
+            this.label_RadioPacketsDropped.Size = new System.Drawing.Size(121, 26);
+            this.label_RadioPacketsDropped.TabIndex = 14;
+            this.label_RadioPacketsDropped.Text = "Dropped %";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 351);
+            this.Controls.Add(this.label_RadioPacketsDropped);
             this.Controls.Add(this.groupBox_ControlInput);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_Attitude);
@@ -359,6 +371,7 @@
         private System.Windows.Forms.GroupBox groupBox_ControlInput;
         private System.Windows.Forms.Label label_PitchRoll;
         private System.Windows.Forms.Label label_ThrustYaw;
+        private System.Windows.Forms.Label label_RadioPacketsDropped;
     }
 }
 

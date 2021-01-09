@@ -60,7 +60,10 @@ namespace GroundStation
             commands.yawCMD = (float)BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ThumbLeftX;
         }
 
+
+
         /* Public Methods */
+
         public bool ControllerIsConnected()
         {
             var connectedControllers = BrandonPotter.XBox.XBoxController.GetConnectedControllers();
