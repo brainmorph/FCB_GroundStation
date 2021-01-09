@@ -39,7 +39,7 @@ namespace GroundStation
             qState.altitude = 0.0f;
 
             /* Create timer */
-            timer = new Timer(300); // create with interval in [ms]
+            timer = new Timer(100); // create with interval in [ms]
             timer.AutoReset = true;
             timer.Enabled = false;
 
@@ -53,7 +53,6 @@ namespace GroundStation
 
 
         /* Public Methods */
-
         public int OpenSerialPort()
         {
             /* Check if serial port is already open */
@@ -79,12 +78,29 @@ namespace GroundStation
         {
             timer.Enabled = true;
         }
+        public void DisableTimer()
+        {
+            timer.Enabled = false;
+        }
         
+        private static int count_ReadUART = 0;
         public void ReadUART()
         {
+            count_ReadUART++; // As soon as we enter this function, we want to log it
+
+            /* Since this function is launched by timer, we want to exit if there's a run already in place */
+            if (count_ReadUART >= 2)
+            {
+                count_ReadUART--;
+                return;
+            }
+            
             /* Check serial port is open */
             if (!port.IsOpen)
+            {
+                DisableTimer();
                 return;
+            }
             
             /* Read from serial port */
             String s = port.ReadLine();
@@ -110,6 +126,7 @@ namespace GroundStation
             qState.lostPacketRatio = int.Parse(parsed[5]);
 
             timer.Enabled = true;
+            count_ReadUART--;
         }
 
         public void WriteRadio(char c)

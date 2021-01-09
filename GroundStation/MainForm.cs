@@ -66,7 +66,7 @@ namespace GroundStation
             label_PitchValue.Text = String.Format("{0:0.00}", radio.GetPitch());
             label_RollValue.Text = String.Format("{0:0.00}", radio.GetRoll());
             label_YawValue.Text = String.Format("{0:0.00}", radio.GetYaw());
-            label_RadioPacketsDropped.Text = String.Format("{0:00}", radio.GetLostPacketRatio());
+            label_RadioPacketsDropped.Text = String.Format("{0:##0}", radio.GetLostPacketRatio());
 
             /* Update Controller Visualization */
             //if (!ci.ControllerIsConnected())
