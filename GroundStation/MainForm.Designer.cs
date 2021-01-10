@@ -43,8 +43,8 @@
             this.label_Roll = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label_Altitude = new System.Windows.Forms.Label();
-            this.button_controllerA = new System.Windows.Forms.Button();
-            this.button_controllerB = new System.Windows.Forms.Button();
+            this.button_Aux1 = new System.Windows.Forms.Button();
+            this.button_Aux2 = new System.Windows.Forms.Button();
             this.timer_UpdateGUI = new System.Windows.Forms.Timer(this.components);
             this.trackBar_Throttle = new System.Windows.Forms.TrackBar();
             this.trackBar_Yaw = new System.Windows.Forms.TrackBar();
@@ -201,38 +201,38 @@
             this.label_Altitude.TabIndex = 0;
             this.label_Altitude.Text = "0";
             // 
-            // button_controllerA
+            // button_Aux1
             // 
-            this.button_controllerA.BackColor = System.Drawing.Color.Gray;
-            this.button_controllerA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_controllerA.Location = new System.Drawing.Point(398, 30);
-            this.button_controllerA.Name = "button_controllerA";
-            this.button_controllerA.Size = new System.Drawing.Size(60, 25);
-            this.button_controllerA.TabIndex = 5;
-            this.button_controllerA.Text = "Aux 1";
-            this.button_controllerA.UseVisualStyleBackColor = false;
+            this.button_Aux1.BackColor = System.Drawing.Color.Silver;
+            this.button_Aux1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Aux1.Location = new System.Drawing.Point(398, 30);
+            this.button_Aux1.Name = "button_Aux1";
+            this.button_Aux1.Size = new System.Drawing.Size(60, 25);
+            this.button_Aux1.TabIndex = 5;
+            this.button_Aux1.Text = "Aux 1";
+            this.button_Aux1.UseVisualStyleBackColor = false;
             // 
-            // button_controllerB
+            // button_Aux2
             // 
-            this.button_controllerB.BackColor = System.Drawing.Color.Gray;
-            this.button_controllerB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_controllerB.Location = new System.Drawing.Point(398, 61);
-            this.button_controllerB.Name = "button_controllerB";
-            this.button_controllerB.Size = new System.Drawing.Size(60, 25);
-            this.button_controllerB.TabIndex = 6;
-            this.button_controllerB.Text = "Aux 2";
-            this.button_controllerB.UseVisualStyleBackColor = false;
+            this.button_Aux2.BackColor = System.Drawing.Color.Silver;
+            this.button_Aux2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_Aux2.Location = new System.Drawing.Point(398, 61);
+            this.button_Aux2.Name = "button_Aux2";
+            this.button_Aux2.Size = new System.Drawing.Size(60, 25);
+            this.button_Aux2.TabIndex = 6;
+            this.button_Aux2.Text = "Aux 2";
+            this.button_Aux2.UseVisualStyleBackColor = false;
             // 
             // timer_UpdateGUI
             // 
             this.timer_UpdateGUI.Enabled = true;
-            this.timer_UpdateGUI.Interval = 50;
+            this.timer_UpdateGUI.Interval = 30;
             this.timer_UpdateGUI.Tick += new System.EventHandler(this.timer_UpdateGUI_Tick);
             // 
             // trackBar_Throttle
             // 
             this.trackBar_Throttle.BackColor = System.Drawing.SystemColors.Control;
-            this.trackBar_Throttle.Location = new System.Drawing.Point(37, 19);
+            this.trackBar_Throttle.Location = new System.Drawing.Point(48, 19);
             this.trackBar_Throttle.Maximum = 100;
             this.trackBar_Throttle.Name = "trackBar_Throttle";
             this.trackBar_Throttle.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -271,9 +271,9 @@
             // 
             this.groupBox_ControlInput.Controls.Add(this.label_PitchRoll);
             this.groupBox_ControlInput.Controls.Add(this.label_ThrustYaw);
-            this.groupBox_ControlInput.Controls.Add(this.button_controllerB);
+            this.groupBox_ControlInput.Controls.Add(this.button_Aux2);
             this.groupBox_ControlInput.Controls.Add(this.trackBar_Pitch);
-            this.groupBox_ControlInput.Controls.Add(this.button_controllerA);
+            this.groupBox_ControlInput.Controls.Add(this.button_Aux1);
             this.groupBox_ControlInput.Controls.Add(this.trackBar_Roll);
             this.groupBox_ControlInput.Controls.Add(this.trackBar_Throttle);
             this.groupBox_ControlInput.Controls.Add(this.trackBar_Yaw);
@@ -361,8 +361,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label_Altitude;
         private System.Windows.Forms.ToolStripMenuItem usbControllerSetupToolStripMenuItem;
-        private System.Windows.Forms.Button button_controllerA;
-        private System.Windows.Forms.Button button_controllerB;
+        private System.Windows.Forms.Button button_Aux1;
+        private System.Windows.Forms.Button button_Aux2;
         private System.Windows.Forms.Timer timer_UpdateGUI;
         private System.Windows.Forms.TrackBar trackBar_Throttle;
         private System.Windows.Forms.TrackBar trackBar_Yaw;

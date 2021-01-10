@@ -21,14 +21,14 @@ namespace GroundStation
     {
 
         MainFormHandle formHandle;
-        CommandInput ci;
+        CommandInput input;
         GroundRadio radio;
 
         public MainForm()
         {
             InitializeComponent();
 
-            ci = new CommandInput();
+            input = new CommandInput();
             radio = new GroundRadio(115200, "COM9");
 
             formHandle.serialPort = GroundRadio.port;
@@ -52,9 +52,9 @@ namespace GroundStation
         /* Handler for USB Controller menu button press */
         private void usbControllerSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ci.ControllerIsConnected())
+            if (input.ControllerIsConnected())
             {
-                ci.StartReadingControllerInput();
+                input.StartReadingControllerInput();
             }
         }
 
@@ -73,22 +73,22 @@ namespace GroundStation
             //{
             //    return; // skip GUI update if controller is unplugged
             //}
-            if (ci.GetAux1Input() == true)
-                button_controllerA.BackColor = Color.Yellow;
+            if (input.GetAux1Input() == true)
+                button_Aux1.BackColor = Color.Yellow;
             else
-                button_controllerA.BackColor = Color.Gray;
+                button_Aux1.BackColor = Color.Silver;
 
 
-            if (ci.GetAux2Input() == true)
-                button_controllerB.BackColor = Color.Yellow;
+            if (input.GetAux2Input() == true)
+                button_Aux2.BackColor = Color.Yellow;
             else
-                button_controllerB.BackColor = Color.Gray;
+                button_Aux2.BackColor = Color.Silver;
 
             
-            trackBar_Throttle.Value = (int)ci.GetThrottleInput();
-            trackBar_Yaw.Value = (int)ci.GetYawInput();
-            trackBar_Pitch.Value = (int)ci.GetPitchInput();
-            trackBar_Roll.Value = (int)ci.GetRollInput();
+            trackBar_Throttle.Value = (int)input.GetThrottleInput();
+            trackBar_Yaw.Value = (int)input.GetYawInput();
+            trackBar_Pitch.Value = (int)input.GetPitchInput();
+            trackBar_Roll.Value = (int)input.GetRollInput();
         }
     }
 }
