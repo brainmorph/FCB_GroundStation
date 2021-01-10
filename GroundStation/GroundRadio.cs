@@ -84,26 +84,32 @@ namespace GroundStation
         }
         
         private static int count_ReadUART = 0;
+        private object lock_readUART = new object();
         public void ReadUART()
         {
-            count_ReadUART++; // As soon as we enter this function, we want to log it
+            timer.Enabled = false;
+            //lock (lock_readUART)
+            //{
+            //    count_ReadUART++; // As soon as we enter this function, we want to log it
 
-            /* Since this function is launched by timer, we want to exit if there's a run already in place */
-            if (count_ReadUART >= 2)
-            {
-                count_ReadUART--;
-                return;
-            }
+            //    /* Since this function is launched by timer, we want to exit if there's a run already in place */
+            //    if (count_ReadUART >= 2)
+            //    {
+            //        count_ReadUART--;
+            //        return;
+            //    }
+            //}
             
             /* Check serial port is open */
             if (!port.IsOpen)
             {
-                DisableTimer();
+                timer.Enabled = false;
                 return;
             }
             
             /* Read from serial port */
             String s = port.ReadLine();
+
             Debug.WriteLine(s);
 
             /* Parse UART data */
@@ -111,10 +117,10 @@ namespace GroundStation
 
             /* Throw out incorrect packets */
             if (parsed.Length != 6 || !parsed[0].Equals("1<3U"))
+            {
+                timer.Enabled = true;
                 return;
-
-            /* Prevent timer from calling this method again too quickly */
-            timer.Enabled = false;
+            }
 
             port.DiscardInBuffer(); // clear the rest of the buffer since our GUI update rate is much slower than UART
 
@@ -124,9 +130,10 @@ namespace GroundStation
             qState.roll = float.Parse(parsed[3]);
             qState.yaw = float.Parse(parsed[4]);
             qState.lostPacketRatio = int.Parse(parsed[5]);
+            
+            //count_ReadUART--;
 
             timer.Enabled = true;
-            count_ReadUART--;
         }
 
         public void WriteRadio(char c)
