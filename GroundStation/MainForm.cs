@@ -12,15 +12,18 @@ using System.Windows.Forms;
 
 namespace GroundStation
 {
-    public struct MainFormHandle
+    public struct SerialSettings
     {
-        public SerialPort serialPort;
-    };
+        public int baudrate;
+        public string portName;
+    }
+
 
     public partial class MainForm : Form
     {
+        
+        public SerialSettings settings;
 
-        MainFormHandle formHandle;
         CommandInput input;
         GroundRadio radio;
 
@@ -28,22 +31,26 @@ namespace GroundStation
         {
             InitializeComponent();
 
-            input = new CommandInput();
-            radio = new GroundRadio(115200, "COM9", input);
-
-            formHandle.serialPort = GroundRadio.port;
+            settings = new SerialSettings();
         }
 
         private void serialPortSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (input == null)
+            {
+                MessageBox.Show("Please connect controller first", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
 
-            FormSerialPortSettings s = new FormSerialPortSettings(ref formHandle);
+            FormSerialPortSettings s = new FormSerialPortSettings(ref settings);
             s.ShowDialog();     // Causes background window to not accept input
 
-            if (radio.OpenSerialPort() != 0)
+            if (radio == null)
+                radio = new GroundRadio(115200, "COM9", input);
+
+            if (radio.SerialPortIsOpen() == true)
             {
                 panel_SerialStatusBox.BackColor = Color.Green;
-                radio.EnableTimer();
             }
             else
                 panel_SerialStatusBox.BackColor = Color.Red;
@@ -52,44 +59,47 @@ namespace GroundStation
         /* Handler for USB Controller menu button press */
         private void usbControllerSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (input == null)
+                input = new CommandInput();
+
             if (input.ControllerIsConnected())
             {
                 input.StartReadingControllerInput();
-                radio.EnableQuadCommands();
             }
         }
 
         private void timer_UpdateGUI_Tick(object sender, EventArgs e)
         {
-
-            /* Update Quad State Components */
-            label_Altitude.Text = String.Format("{0:0.00}", radio.GetAltitude());
-            label_PitchValue.Text = String.Format("{0:0.00}", radio.GetPitch());
-            label_RollValue.Text = String.Format("{0:0.00}", radio.GetRoll());
-            label_YawValue.Text = String.Format("{0:0.00}", radio.GetYaw());
-            label_RadioPacketsDropped.Text = String.Format("{0:##0}", radio.GetLostPacketRatio());
+            if (radio != null)
+            {
+                /* Update Quad State Components */
+                label_Altitude.Text = String.Format("{0:0.00}", radio.GetAltitude());
+                label_PitchValue.Text = String.Format("{0:0.00}", radio.GetPitch());
+                label_RollValue.Text = String.Format("{0:0.00}", radio.GetRoll());
+                label_YawValue.Text = String.Format("{0:0.00}", radio.GetYaw());
+                label_RadioPacketsDropped.Text = String.Format("{0:##0}", radio.GetLostPacketRatio());
+            }
 
             /* Update Controller Visualization */
-            //if (!ci.ControllerIsConnected())
-            //{
-            //    return; // skip GUI update if controller is unplugged
-            //}
-            if (input.GetAux1Input() == true)
-                button_Aux1.BackColor = Color.Yellow;
-            else
-                button_Aux1.BackColor = Color.Silver;
+            if (input != null)
+            {
+                if (input.GetAux1Input() == true)
+                    button_Aux1.BackColor = Color.Yellow;
+                else
+                    button_Aux1.BackColor = Color.Silver;
 
 
-            if (input.GetAux2Input() == true)
-                button_Aux2.BackColor = Color.Yellow;
-            else
-                button_Aux2.BackColor = Color.Silver;
+                if (input.GetAux2Input() == true)
+                    button_Aux2.BackColor = Color.Yellow;
+                else
+                    button_Aux2.BackColor = Color.Silver;
 
-            
-            trackBar_Throttle.Value = (int)input.GetThrottleInput();
-            trackBar_Yaw.Value = (int)input.GetYawInput();
-            trackBar_Pitch.Value = (int)input.GetPitchInput();
-            trackBar_Roll.Value = (int)input.GetRollInput();
+
+                trackBar_Throttle.Value = (int)input.GetThrottleInput();
+                trackBar_Yaw.Value = (int)input.GetYawInput();
+                trackBar_Pitch.Value = (int)input.GetPitchInput();
+                trackBar_Roll.Value = (int)input.GetRollInput();
+            }
         }
     }
 }

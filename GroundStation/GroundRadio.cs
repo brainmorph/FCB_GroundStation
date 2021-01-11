@@ -12,9 +12,9 @@ namespace GroundStation
     class GroundRadio
     {
 
-        public static SerialPort port;
-        private static Timer timer;
-        private static Timer commandTimer;
+        private static SerialPort port;
+        private static Timer serialReadTimer;
+        private static Timer serialWriteTimer;
 
         private struct QuadState
         {
@@ -43,27 +43,31 @@ namespace GroundStation
             qState.altitude = 0.0f;
 
             /* Create read serial timer */
-            timer = new Timer(100); // create with interval in [ms]
-            timer.AutoReset = true;
-            timer.Enabled = false;
-            timer.Elapsed += OnTimedEvent; // attach event handler
+            serialReadTimer = new Timer(100); // create with interval in [ms]
+            serialReadTimer.AutoReset = true;
+            serialReadTimer.Enabled = true;
+            serialReadTimer.Elapsed += OnSerialReadTimerElapsed; // attach event handler
 
-            /* Create send command timer */
-            commandTimer = new Timer(500);
-            commandTimer.AutoReset = true;
-            commandTimer.Enabled = false;
-            commandTimer.Elapsed += SendCommandsToQuad;
+            /* Create write serial timer */
+            serialWriteTimer = new Timer(500);
+            serialWriteTimer.AutoReset = true;
+            serialWriteTimer.Enabled = true;
+            serialWriteTimer.Elapsed += OnSerialWriteTimerElapsed; // attach event handler
 
+            OpenSerialPort();
         }
 
-        private void OnTimedEvent(Object source, ElapsedEventArgs e)
+        private void OnSerialReadTimerElapsed(Object source, ElapsedEventArgs e)
         {
             ReadUART();
         }
 
-
-        /* Public Methods */
-        public int OpenSerialPort()
+        private void OnSerialWriteTimerElapsed(Object source, ElapsedEventArgs e)
+        {
+            SendUART();
+        }
+        
+        private int OpenSerialPort()
         {
             /* Check if serial port is already open */
             if (port.IsOpen)
@@ -84,29 +88,21 @@ namespace GroundStation
             return 1;
         }
 
-        public void EnableTimer()
+        private void ReadUART()
         {
-            timer.Enabled = true;
-        }
-        public void DisableTimer()
-        {
-            timer.Enabled = false;
-        }
-        
-        public void ReadUART()
-        {
-            timer.Enabled = false;
-            
+            serialReadTimer.Enabled = false;
+
             /* Check serial port is open */
             if (!port.IsOpen)
             {
-                timer.Enabled = false;
+                serialReadTimer.Enabled = false;
                 return;
             }
-            
+
             /* Read from serial port */
             String s = port.ReadLine();
 
+            /* Echo received data */
             var cleaned = s.Replace("\0", string.Empty);
             Debug.Write(cleaned);
             s = cleaned;
@@ -117,7 +113,7 @@ namespace GroundStation
             /* Throw out incorrect packets */
             if (parsed.Length != 6 || !parsed[0].Equals("1<3U"))
             {
-                timer.Enabled = true;
+                serialReadTimer.Enabled = true;
                 return;
             }
 
@@ -130,17 +126,53 @@ namespace GroundStation
             qState.roll = float.Parse(parsed[3]);
             qState.yaw = float.Parse(parsed[4]);
             qState.lostPacketRatio = int.Parse(parsed[5]);
-            
-            //count_ReadUART--;
 
-            timer.Enabled = true;
+            serialReadTimer.Enabled = true;
         }
 
-        public void WriteRadio(char c)
+        private void SendUART()
         {
-            port.WriteLine(c.ToString()); // TODO: how to check if this was successful?
+            if (commands == null)
+                throw new InvalidOperationException("Commands object should not be null here.");
+
+            if (!SerialPortIsOpen())
+                throw new InvalidOperationException("Serial port should be open here.");
+
+            serialWriteTimer.Enabled = false;
+
+            if (!commands.ControllerIsConnected())
+            {
+                serialWriteTimer.Enabled = true;
+                return;
+            }
+
+            port.DiscardOutBuffer(); // clear output buffer first
+            if (commands.GetThrottleInput() > 80)
+            {
+                port.Write("1");
+            }
+            else if (commands.GetThrottleInput() < 20)
+            {
+                port.Write("2");
+            }
+
+            if (commands.GetAux1Input())
+            {
+                port.Write("i");
+            }
+
+            port.BaseStream.Flush();
+
+            serialWriteTimer.Enabled = true;
         }
 
+
+
+        /* Public Methods */
+        public bool SerialPortIsOpen()
+        {
+            return port.IsOpen;
+        }
         public float GetPitch()
         {
             return qState.pitch;
@@ -160,41 +192,6 @@ namespace GroundStation
         public int GetLostPacketRatio()
         {
             return qState.lostPacketRatio;
-        }
-
-        public void SendCommandsToQuad(Object source, ElapsedEventArgs e)
-        {
-            commandTimer.Enabled = false;
-
-            if (!commands.ControllerIsConnected())
-            {
-                commandTimer.Enabled = true;
-                return;
-            }
-
-            port.DiscardOutBuffer(); // clear output buffer first
-            if(commands.GetThrottleInput() > 80)
-            {
-                port.Write("1");
-            }
-            else if(commands.GetThrottleInput() < 20)
-            {
-                port.Write("2");
-            }
-
-            if(commands.GetAux1Input())
-            {
-                port.Write("i");
-            }
-
-            port.BaseStream.Flush();
-
-            commandTimer.Enabled = true;
-        }
-
-        public void EnableQuadCommands()
-        {
-            commandTimer.Enabled = true;
         }
     }
 }

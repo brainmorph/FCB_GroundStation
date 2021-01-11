@@ -13,13 +13,15 @@ namespace GroundStation
 {
     public partial class FormSerialPortSettings : Form
     {
-        MainFormHandle handle; // used for accessing objects exposed in MainForm
+        
+        private SerialSettings settings;
 
-        public FormSerialPortSettings(ref MainFormHandle form1Struct)
+
+        public FormSerialPortSettings(ref SerialSettings set)
         {
             InitializeComponent();
 
-            handle = form1Struct;
+            settings = set;
         }
 
         private void FormSerialPortSettings_Load(object sender, EventArgs e)
@@ -29,14 +31,10 @@ namespace GroundStation
 
         private void button_Connect_Click(object sender, EventArgs e)
         {
-            /* Ensure port isn't already open */
-            if (handle.serialPort.IsOpen)
-                return;
-
             /* Configure port */
             Debug.WriteLine("Set baudrate: " + comboBox_BaudRate.Text);
-            handle.serialPort.BaudRate = int.Parse(comboBox_BaudRate.Text);
-            handle.serialPort.PortName = "COM9"; // TODO: set this dynamically
+            settings.baudrate = int.Parse(comboBox_BaudRate.Text);
+            settings.portName = "COM9"; // TODO: set this dynamically
 
             this.Close();
         }
