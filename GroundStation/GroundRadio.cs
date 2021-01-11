@@ -14,6 +14,7 @@ namespace GroundStation
 
         public static SerialPort port;
         private static Timer timer;
+        private static Timer commandTimer;
 
         private struct QuadState
         {
@@ -24,9 +25,12 @@ namespace GroundStation
             public int lostPacketRatio;
         }
         private static QuadState qState;
+        CommandInput commands;
 
-        public GroundRadio(int baud, String comPort)
+        public GroundRadio(int baud, String comPort, CommandInput inp)
         {
+            commands = inp; // pass reference to local handler
+
             port = new SerialPort(); // create new SerialPort with default settings
 
             port.BaudRate = baud;
@@ -38,12 +42,18 @@ namespace GroundStation
             qState.yaw = 0.0f;
             qState.altitude = 0.0f;
 
-            /* Create timer */
+            /* Create read serial timer */
             timer = new Timer(100); // create with interval in [ms]
             timer.AutoReset = true;
             timer.Enabled = false;
-
             timer.Elapsed += OnTimedEvent; // attach event handler
+
+            /* Create send command timer */
+            commandTimer = new Timer(500);
+            commandTimer.AutoReset = true;
+            commandTimer.Enabled = false;
+            commandTimer.Elapsed += SendCommandsToQuad;
+
         }
 
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
@@ -83,22 +93,9 @@ namespace GroundStation
             timer.Enabled = false;
         }
         
-        private static int count_ReadUART = 0;
-        private object lock_readUART = new object();
         public void ReadUART()
         {
             timer.Enabled = false;
-            //lock (lock_readUART)
-            //{
-            //    count_ReadUART++; // As soon as we enter this function, we want to log it
-
-            //    /* Since this function is launched by timer, we want to exit if there's a run already in place */
-            //    if (count_ReadUART >= 2)
-            //    {
-            //        count_ReadUART--;
-            //        return;
-            //    }
-            //}
             
             /* Check serial port is open */
             if (!port.IsOpen)
@@ -110,7 +107,9 @@ namespace GroundStation
             /* Read from serial port */
             String s = port.ReadLine();
 
-            Debug.WriteLine(s);
+            var cleaned = s.Replace("\0", string.Empty);
+            Debug.Write(cleaned);
+            s = cleaned;
 
             /* Parse UART data */
             String[] parsed = s.Split(',');
@@ -122,6 +121,7 @@ namespace GroundStation
                 return;
             }
 
+            Debug.Write(port.ReadExisting().ToString());
             port.DiscardInBuffer(); // clear the rest of the buffer since our GUI update rate is much slower than UART
 
             // TODO: find location of each data component through tokens
@@ -160,6 +160,41 @@ namespace GroundStation
         public int GetLostPacketRatio()
         {
             return qState.lostPacketRatio;
+        }
+
+        public void SendCommandsToQuad(Object source, ElapsedEventArgs e)
+        {
+            commandTimer.Enabled = false;
+
+            if (!commands.ControllerIsConnected())
+            {
+                commandTimer.Enabled = true;
+                return;
+            }
+
+            port.DiscardOutBuffer(); // clear output buffer first
+            if(commands.GetThrottleInput() > 80)
+            {
+                port.Write("1");
+            }
+            else if(commands.GetThrottleInput() < 20)
+            {
+                port.Write("2");
+            }
+
+            if(commands.GetAux1Input())
+            {
+                port.Write("i");
+            }
+
+            port.BaseStream.Flush();
+
+            commandTimer.Enabled = true;
+        }
+
+        public void EnableQuadCommands()
+        {
+            commandTimer.Enabled = true;
         }
     }
 }

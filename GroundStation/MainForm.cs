@@ -29,7 +29,7 @@ namespace GroundStation
             InitializeComponent();
 
             input = new CommandInput();
-            radio = new GroundRadio(115200, "COM9");
+            radio = new GroundRadio(115200, "COM9", input);
 
             formHandle.serialPort = GroundRadio.port;
         }
@@ -55,6 +55,7 @@ namespace GroundStation
             if (input.ControllerIsConnected())
             {
                 input.StartReadingControllerInput();
+                radio.EnableQuadCommands();
             }
         }
 
