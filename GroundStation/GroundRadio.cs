@@ -25,9 +25,10 @@ namespace GroundStation
         private static QuadState qState;
 
         private CommandInput commands;
+
         private static SerialPort port;
-        private static Timer serialReadTimer;
-        private static Timer serialWriteTimer;
+
+        private static Timer serialCommsTimer;
 
 
 
@@ -37,12 +38,10 @@ namespace GroundStation
         **********************************************************/
         private void OnSerialReadTimerElapsed(Object source, ElapsedEventArgs e)
         {
+            DisableTimers();
             ReadUART();
             SendUART();
-        }
-        private void OnSerialWriteTimerElapsed(Object source, ElapsedEventArgs e)
-        {
-            //SendUART();
+            EnableTimers();
         }
 
 
@@ -74,27 +73,30 @@ namespace GroundStation
 
         private void DisableTimers()
         {
-            serialReadTimer.Enabled = false;
-            serialWriteTimer.Enabled = false;
+            serialCommsTimer.Enabled = false;
         }
         private void EnableTimers()
         {
-            serialReadTimer.Enabled = true;
-            serialWriteTimer.Enabled = true;
+            serialCommsTimer.Enabled = true;
         }
         private void ReadUART()
         {
-            DisableTimers();
-
             /* Check serial port is open */
             if (!port.IsOpen)
             {
-                EnableTimers();
                 return;
             }
 
             /* Read from serial port */
-            String s = port.ReadLine();
+            if (port.BytesToRead < 8)
+            {
+                String existing = port.ReadExisting();
+                Debug.Write(existing);
+                port.DiscardInBuffer();
+                return;
+            }
+
+            String s = port.ReadLine(); // WARNING: this blocks
 
             /* Echo received data */
             var cleaned = s.Replace("\0", string.Empty);
@@ -107,12 +109,11 @@ namespace GroundStation
             /* Throw out incorrect packets */
             if (parsed.Length != 6 || !parsed[0].Equals("1<3U"))
             {
-                EnableTimers();
                 return;
             }
 
-            Debug.Write(port.ReadExisting().ToString());
-            port.DiscardInBuffer(); // clear the rest of the buffer since our GUI update rate is much slower than UART
+            //Debug.Write(port.ReadExisting().ToString());
+            //port.DiscardInBuffer(); // clear the rest of the buffer since our GUI update rate is much slower than UART
 
             // TODO: find location of each data component through tokens
             qState.altitude = float.Parse(parsed[1]);
@@ -120,37 +121,22 @@ namespace GroundStation
             qState.roll = float.Parse(parsed[3]);
             qState.yaw = float.Parse(parsed[4]);
             qState.lostPacketRatio = int.Parse(parsed[5]);
-
-            EnableTimers();
+            
         }
-
-        private int c = 0;
+        
         private void SendUART()
         {
-            DisableTimers();
-
             if (commands == null)
                 throw new InvalidOperationException("Commands object should not be null here.");
 
             
             if(!SerialPortIsOpen())
             {
-                EnableTimers();
-                return;
+                throw new InvalidOperationException("Serial port should be open.");
             }
-
-            //while (!SerialPortIsOpen())
-            //{
-            //    c++;
-
-            //    if(c > 1000)
-            //        throw new InvalidOperationException("Serial port should be open here.");
-            //}
-
 
             if (!commands.ControllerIsConnected())
             {
-                EnableTimers();
                 return;
             }
 
@@ -170,8 +156,6 @@ namespace GroundStation
             }
 
             port.BaseStream.Flush();
-
-            EnableTimers();
         }
 
 
@@ -195,17 +179,11 @@ namespace GroundStation
             qState.yaw = 0.0f;
             qState.altitude = 0.0f;
 
-            /* Create read serial timer */
-            serialReadTimer = new Timer(1000); // create with interval in [ms]
-            serialReadTimer.AutoReset = true;
-            serialReadTimer.Enabled = true;
-            serialReadTimer.Elapsed += OnSerialReadTimerElapsed; // attach event handler
-
-            /* Create write serial timer */
-            serialWriteTimer = new Timer(500);
-            serialWriteTimer.AutoReset = true;
-            serialWriteTimer.Enabled = true;
-            serialWriteTimer.Elapsed += OnSerialWriteTimerElapsed; // attach event handler
+            /* Create serial comms timer */
+            serialCommsTimer = new Timer(100); // create with interval in [ms]
+            serialCommsTimer.AutoReset = true;
+            serialCommsTimer.Enabled = true;
+            serialCommsTimer.Elapsed += OnSerialReadTimerElapsed; // attach event handler
 
             OpenSerialPort();
         }
