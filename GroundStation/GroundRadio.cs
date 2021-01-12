@@ -100,6 +100,8 @@ namespace GroundStation
             port.DiscardInBuffer();
 
             int newlineindex = existing.IndexOf('\n');
+            if (newlineindex < 0)
+                return;
             String s = existing.Substring(0, newlineindex);
             //String s = port.ReadLine(); // WARNING: this blocks
 
