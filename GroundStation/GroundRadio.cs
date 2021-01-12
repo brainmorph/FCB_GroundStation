@@ -68,6 +68,9 @@ namespace GroundStation
             }
 
             Debug.WriteLine("Connected to radio serial port.");
+
+            EnableTimers();
+
             return 1;
         }
 
@@ -88,15 +91,17 @@ namespace GroundStation
             }
 
             /* Read from serial port */
-            if (port.BytesToRead < 8)
-            {
-                String existing = port.ReadExisting();
-                Debug.Write(existing);
-                port.DiscardInBuffer();
+            if (port.BytesToRead == 0)
                 return;
-            }
 
-            String s = port.ReadLine(); // WARNING: this blocks
+
+            String existing = port.ReadExisting();
+            //Debug.Write(existing);
+            port.DiscardInBuffer();
+
+            int newlineindex = existing.IndexOf('\n');
+            String s = existing.Substring(0, newlineindex);
+            //String s = port.ReadLine(); // WARNING: this blocks
 
             /* Echo received data */
             var cleaned = s.Replace("\0", string.Empty);
@@ -182,7 +187,7 @@ namespace GroundStation
             /* Create serial comms timer */
             serialCommsTimer = new Timer(100); // create with interval in [ms]
             serialCommsTimer.AutoReset = true;
-            serialCommsTimer.Enabled = true;
+            serialCommsTimer.Enabled = false;
             serialCommsTimer.Elapsed += OnSerialReadTimerElapsed; // attach event handler
 
             OpenSerialPort();
