@@ -188,7 +188,7 @@ namespace GroundStation
 
             if (commands.GetAux1Input())
             {
-                port.Write("5");
+                port.Write("0");
             }
 
             port.BaseStream.Flush();
