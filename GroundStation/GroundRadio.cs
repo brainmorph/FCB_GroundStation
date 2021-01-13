@@ -95,15 +95,25 @@ namespace GroundStation
                 return;
 
 
-            String existing = port.ReadExisting();
-            //Debug.Write(existing);
-            port.DiscardInBuffer();
+            //String existing = port.ReadExisting();
+            ////Debug.Write(existing);
+            //port.DiscardInBuffer();
 
-            int newlineindex = existing.IndexOf('\n');
-            if (newlineindex < 0)
+            //int newlineindex = existing.IndexOf('\n');
+            //if (newlineindex < 0)
+            //    return;
+            //String s = existing.Substring(0, newlineindex);
+
+            String s;
+            port.ReadTimeout = 1;
+            try
+            {
+                s = port.ReadLine(); // WARNING: this blocks
+            }
+            catch
+            {
                 return;
-            String s = existing.Substring(0, newlineindex);
-            //String s = port.ReadLine(); // WARNING: this blocks
+            }
 
             /* Echo received data */
             var cleaned = s.Replace("\0", string.Empty);
@@ -187,7 +197,7 @@ namespace GroundStation
             qState.altitude = 0.0f;
 
             /* Create serial comms timer */
-            serialCommsTimer = new Timer(100); // create with interval in [ms]
+            serialCommsTimer = new Timer(5); // create with interval in [ms]
             serialCommsTimer.AutoReset = true;
             serialCommsTimer.Enabled = false;
             serialCommsTimer.Elapsed += OnSerialReadTimerElapsed; // attach event handler
