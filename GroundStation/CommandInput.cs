@@ -20,6 +20,8 @@ namespace GroundStation
             public float yawCMD;
             public bool aux1;
             public bool aux2;
+            public bool aux3;
+            public bool aux4;
         }
 
         private static Commands commands;
@@ -33,6 +35,8 @@ namespace GroundStation
             commands.yawCMD = 0.0f;
             commands.aux1 = false;
             commands.aux2 = false;
+            commands.aux3 = false;
+            commands.aux4 = false;
 
             /* Create timer */
             timer = new Timer(30); // create with interval in [ms]
@@ -53,6 +57,8 @@ namespace GroundStation
 
             commands.aux1 = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonAPressed;
             commands.aux2 = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonBPressed;
+            commands.aux3 = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonYPressed;
+            commands.aux4 = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonXPressed;
 
             commands.throttleCMD = (float)BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ThumbLeftY;
             commands.pitchCMD = (float)BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ThumbRightY;

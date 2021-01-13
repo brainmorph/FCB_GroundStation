@@ -158,6 +158,8 @@ namespace GroundStation
             }
 
             port.DiscardOutBuffer(); // clear output buffer first
+
+            /* Send command characters */
             if (commands.GetThrottleInput() > 80)
             {
                 port.Write("1");
@@ -167,9 +169,26 @@ namespace GroundStation
                 port.Write("2");
             }
 
+            if(commands.GetPitchInput() > 80)
+            {
+                port.Write("w");
+            }
+            else if (commands.GetPitchInput() < 20)
+            {
+                port.Write("s");
+            }
+
+            if(commands.GetRollInput() > 80)
+            {
+                port.Write("d");
+            }else if (commands.GetRollInput() < 20)
+            {
+                port.Write("a");
+            }
+
             if (commands.GetAux1Input())
             {
-                port.Write("i");
+                port.Write("5");
             }
 
             port.BaseStream.Flush();
@@ -197,7 +216,7 @@ namespace GroundStation
             qState.altitude = 0.0f;
 
             /* Create serial comms timer */
-            serialCommsTimer = new Timer(5); // create with interval in [ms]
+            serialCommsTimer = new Timer(1); // create with interval in [ms]
             serialCommsTimer.AutoReset = true;
             serialCommsTimer.Enabled = false;
             serialCommsTimer.Elapsed += OnSerialReadTimerElapsed; // attach event handler
