@@ -45,6 +45,9 @@ namespace GroundStation
             FormSerialPortSettings s = new FormSerialPortSettings(ref settings);
             s.ShowDialog();     // Causes background window to not accept input
 
+            if (!s.connectButtonPressed)
+                return;
+
             if (radio == null)
                 radio = new GroundRadio(115200, "COM9", input);
 

@@ -13,7 +13,8 @@ namespace GroundStation
 {
     public partial class FormSerialPortSettings : Form
     {
-        
+
+        public bool connectButtonPressed = false;
         private SerialSettings settings;
 
 
@@ -27,6 +28,7 @@ namespace GroundStation
         private void FormSerialPortSettings_Load(object sender, EventArgs e)
         {
             comboBox_BaudRate.SelectedIndex = 0; // select a default index in dropdown
+            connectButtonPressed = false;
         }
 
         private void button_Connect_Click(object sender, EventArgs e)
@@ -35,6 +37,8 @@ namespace GroundStation
             Debug.WriteLine("Set baudrate: " + comboBox_BaudRate.Text);
             settings.baudrate = int.Parse(comboBox_BaudRate.Text);
             settings.portName = "COM9"; // TODO: set this dynamically
+
+            connectButtonPressed = true;
 
             this.Close();
         }
