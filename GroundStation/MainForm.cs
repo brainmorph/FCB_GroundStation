@@ -81,6 +81,8 @@ namespace GroundStation
                 label_RollValue.Text = String.Format("{0:0.00}", radio.GetRoll());
                 label_YawValue.Text = String.Format("{0:0.00}", radio.GetYaw());
                 label_RadioPacketsDropped.Text = String.Format("{0:##0}", radio.GetLostPacketRatio());
+
+                DrawLine();
             }
 
             /* Update Controller Visualization */
@@ -102,8 +104,7 @@ namespace GroundStation
                 trackBar_Yaw.Value = (int)input.GetYawInput();
                 trackBar_Pitch.Value = (int)input.GetPitchInput();
                 trackBar_Roll.Value = (int)input.GetRollInput();
-
-                DrawLine();
+                
             } // if (input != null)
         } // private void timer_UpdateGUI_Tick(object sender, EventArgs e)
 
@@ -111,18 +112,21 @@ namespace GroundStation
 
         Pen pen = new Pen(Color.Pink);
         Graphics g = null;
+        private int endX;
         private void DrawLine()
         {
             pen.Width = 20;
-
             g = panel_Pitch.CreateGraphics();
+
+            endX = (int)radio.GetPitch();
 
             Point[] points =
             {
                 new Point(0, 0),
-                new Point(100, 100)
+                new Point(endX, 100)
             };
 
+            g.Clear(Color.CornflowerBlue);
             g.DrawLines(pen, points);
         }
     }
