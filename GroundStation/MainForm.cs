@@ -102,7 +102,28 @@ namespace GroundStation
                 trackBar_Yaw.Value = (int)input.GetYawInput();
                 trackBar_Pitch.Value = (int)input.GetPitchInput();
                 trackBar_Roll.Value = (int)input.GetRollInput();
-            }
+
+                DrawLine();
+            } // if (input != null)
+        } // private void timer_UpdateGUI_Tick(object sender, EventArgs e)
+
+
+
+        Pen pen = new Pen(Color.Pink);
+        Graphics g = null;
+        private void DrawLine()
+        {
+            pen.Width = 20;
+
+            g = panel_Pitch.CreateGraphics();
+
+            Point[] points =
+            {
+                new Point(0, 0),
+                new Point(100, 100)
+            };
+
+            g.DrawLines(pen, points);
         }
     }
 }
