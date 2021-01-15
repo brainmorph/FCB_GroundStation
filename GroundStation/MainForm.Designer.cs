@@ -55,6 +55,7 @@
             this.label_ThrustYaw = new System.Windows.Forms.Label();
             this.label_RadioPacketsDropped = new System.Windows.Forms.Label();
             this.panel_Pitch = new System.Windows.Forms.Panel();
+            this.panel_Roll = new System.Windows.Forms.Panel();
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -319,14 +320,22 @@
             // 
             this.panel_Pitch.Location = new System.Drawing.Point(12, 345);
             this.panel_Pitch.Name = "panel_Pitch";
-            this.panel_Pitch.Size = new System.Drawing.Size(679, 147);
+            this.panel_Pitch.Size = new System.Drawing.Size(199, 147);
             this.panel_Pitch.TabIndex = 15;
+            // 
+            // panel_Roll
+            // 
+            this.panel_Roll.Location = new System.Drawing.Point(217, 345);
+            this.panel_Roll.Name = "panel_Roll";
+            this.panel_Roll.Size = new System.Drawing.Size(199, 147);
+            this.panel_Roll.TabIndex = 16;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 504);
+            this.Controls.Add(this.panel_Roll);
             this.Controls.Add(this.panel_Pitch);
             this.Controls.Add(this.label_RadioPacketsDropped);
             this.Controls.Add(this.groupBox_ControlInput);
@@ -383,6 +392,7 @@
         private System.Windows.Forms.Label label_ThrustYaw;
         private System.Windows.Forms.Label label_RadioPacketsDropped;
         private System.Windows.Forms.Panel panel_Pitch;
+        private System.Windows.Forms.Panel panel_Roll;
     }
 }
 

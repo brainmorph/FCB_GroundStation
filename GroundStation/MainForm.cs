@@ -21,7 +21,10 @@ namespace GroundStation
 
     public partial class MainForm : Form
     {
-        
+        Pen pen = new Pen(Color.Pink);
+        Graphics graphicsObject_Pitch = null;
+        Graphics graphicsObject_Roll = null;
+
         public SerialSettings settings;
 
         CommandInput input;
@@ -32,6 +35,9 @@ namespace GroundStation
             InitializeComponent();
 
             settings = new SerialSettings();
+
+            graphicsObject_Pitch = panel_Pitch.CreateGraphics();
+            graphicsObject_Roll = panel_Roll.CreateGraphics();
         }
 
         private void serialPortSetupToolStripMenuItem_Click(object sender, EventArgs e)
@@ -82,7 +88,8 @@ namespace GroundStation
                 label_YawValue.Text = String.Format("{0:0.00}", radio.GetYaw());
                 label_RadioPacketsDropped.Text = String.Format("{0:##0}", radio.GetLostPacketRatio());
 
-                DrawLine();
+                AnimatePitchIndicator();
+                AnimateRollIndicator();
             }
 
             /* Update Controller Visualization */
@@ -108,22 +115,51 @@ namespace GroundStation
             } // if (input != null)
         } // private void timer_UpdateGUI_Tick(object sender, EventArgs e)
 
-
-
-        Pen pen = new Pen(Color.Pink);
-        Graphics g = null;
-        private int endX;
-        private void DrawLine()
+        private void AnimatePitchIndicator()
         {
-            pen.Width = 20;
-            g = panel_Pitch.CreateGraphics();
+            int startX;
+            int startY;
+            int endX;
+            int endY;
 
-            endX = (int)radio.GetPitch();
+            startX = 0; //was: panel_Pitch.Width / 2;
+            startY = panel_Pitch.Height / 2;
+            double pitchAngle = (radio.GetPitch() * 3.14 / 180f);
+            double lineLength = 200f;
+            endX = startX + (int)(lineLength * Math.Cos(pitchAngle));
+            endY = startY + (int)(lineLength * Math.Sin(pitchAngle));
 
+            pen.Width = 5;
+            pen.Color = Color.Yellow;
+
+            DrawLine(graphicsObject_Pitch, startX, startY, endX, endY);
+        }
+        private void AnimateRollIndicator()
+        {
+            int startX;
+            int startY;
+            int endX;
+            int endY;
+
+            startX = panel_Pitch.Width / 2;
+            startY = 0; //was: panel_Pitch.Height / 2;
+            double rollAngle = (radio.GetRoll() + 90) * 3.14 / 180f;
+            double lineLength = 200f;
+            endX = startX + (int)(lineLength * Math.Cos(rollAngle));
+            endY = startY + (int)(lineLength * Math.Sin(rollAngle));
+
+            pen.Width = 5;
+            pen.Color = Color.Pink;
+
+            DrawLine(graphicsObject_Roll, startX, startY, endX, endY);
+        }
+
+        private void DrawLine(Graphics g, int x1, int y1, int x2, int y2)
+        {
             Point[] points =
             {
-                new Point(0, 0),
-                new Point(endX, 100)
+                new Point(x1, y1),
+                new Point(x2, y2)
             };
 
             g.Clear(Color.CornflowerBlue);
