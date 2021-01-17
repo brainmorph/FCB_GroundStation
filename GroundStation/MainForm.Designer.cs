@@ -56,6 +56,7 @@
             this.label_RadioPacketsDropped = new System.Windows.Forms.Label();
             this.panel_Pitch = new System.Windows.Forms.Panel();
             this.panel_Roll = new System.Windows.Forms.Panel();
+            this.label_PacketLostPercent = new System.Windows.Forms.Label();
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -312,9 +313,9 @@
             this.label_RadioPacketsDropped.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_RadioPacketsDropped.Location = new System.Drawing.Point(525, 33);
             this.label_RadioPacketsDropped.Name = "label_RadioPacketsDropped";
-            this.label_RadioPacketsDropped.Size = new System.Drawing.Size(121, 26);
+            this.label_RadioPacketsDropped.Size = new System.Drawing.Size(32, 26);
             this.label_RadioPacketsDropped.TabIndex = 14;
-            this.label_RadioPacketsDropped.Text = "Dropped %";
+            this.label_RadioPacketsDropped.Text = "%";
             // 
             // panel_Pitch
             // 
@@ -330,11 +331,22 @@
             this.panel_Roll.Size = new System.Drawing.Size(199, 147);
             this.panel_Roll.TabIndex = 16;
             // 
+            // label_PacketLostPercent
+            // 
+            this.label_PacketLostPercent.AutoSize = true;
+            this.label_PacketLostPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_PacketLostPercent.Location = new System.Drawing.Point(344, 33);
+            this.label_PacketLostPercent.Name = "label_PacketLostPercent";
+            this.label_PacketLostPercent.Size = new System.Drawing.Size(175, 26);
+            this.label_PacketLostPercent.TabIndex = 17;
+            this.label_PacketLostPercent.Text = "Packets Lost [%]";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(703, 504);
+            this.Controls.Add(this.label_PacketLostPercent);
             this.Controls.Add(this.panel_Roll);
             this.Controls.Add(this.panel_Pitch);
             this.Controls.Add(this.label_RadioPacketsDropped);
@@ -393,6 +405,7 @@
         private System.Windows.Forms.Label label_RadioPacketsDropped;
         private System.Windows.Forms.Panel panel_Pitch;
         private System.Windows.Forms.Panel panel_Roll;
+        private System.Windows.Forms.Label label_PacketLostPercent;
     }
 }
 
