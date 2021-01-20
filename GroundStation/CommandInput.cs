@@ -18,10 +18,10 @@ namespace GroundStation
             public float pitchCMD;
             public float rollCMD;
             public float yawCMD;
-            public bool aux1;
-            public bool aux2;
-            public bool aux3;
-            public bool aux4;
+            public bool aux_A;
+            public bool aux_B;
+            public bool aux_Y;
+            public bool aux_X;
         }
 
         private static Commands commands;
@@ -33,10 +33,10 @@ namespace GroundStation
             commands.pitchCMD = 0.0f;
             commands.rollCMD = 0.0f;
             commands.yawCMD = 0.0f;
-            commands.aux1 = false;
-            commands.aux2 = false;
-            commands.aux3 = false;
-            commands.aux4 = false;
+            commands.aux_A = false;
+            commands.aux_B = false;
+            commands.aux_Y = false;
+            commands.aux_X = false;
 
             /* Create timer */
             timer = new Timer(30); // create with interval in [ms]
@@ -55,10 +55,10 @@ namespace GroundStation
                 return;
             }
 
-            commands.aux1 = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonAPressed;
-            commands.aux2 = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonBPressed;
-            commands.aux3 = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonYPressed;
-            commands.aux4 = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonXPressed;
+            commands.aux_A = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonAPressed;
+            commands.aux_B = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonBPressed;
+            commands.aux_Y = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonYPressed;
+            commands.aux_X = BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ButtonXPressed;
 
             commands.throttleCMD = (float)BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ThumbLeftY;
             commands.pitchCMD = (float)BrandonPotter.XBox.XBoxController.GetConnectedControllers().FirstOrDefault().ThumbRightY;
@@ -102,13 +102,21 @@ namespace GroundStation
         {
             return commands.yawCMD;
         }
-        public bool GetAux1Input()
+        public bool GetAux_AInput()
         {
-            return commands.aux1;
+            return commands.aux_A;
         }
-        public bool GetAux2Input()
+        public bool GetAux_BInput()
         {
-            return commands.aux2;
+            return commands.aux_B;
+        }
+        public bool GetAux_YInput()
+        {
+            return commands.aux_Y;
+        }
+        public bool GetAux_XInput()
+        {
+            return commands.aux_X;
         }
     }
 }

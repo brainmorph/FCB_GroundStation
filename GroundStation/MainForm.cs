@@ -55,7 +55,7 @@ namespace GroundStation
                 return;
 
             if (radio == null)
-                radio = new GroundRadio(115200, "COM9", input);
+                radio = new GroundRadio(115200, "COM6", input);
 
             if (radio.SerialPortIsOpen() == true)
             {
@@ -95,13 +95,13 @@ namespace GroundStation
             /* Update Controller Visualization */
             if (input != null)
             {
-                if (input.GetAux1Input() == true)
+                if (input.GetAux_AInput() == true)
                     button_Aux1.BackColor = Color.Yellow;
                 else
                     button_Aux1.BackColor = Color.Silver;
 
 
-                if (input.GetAux2Input() == true)
+                if (input.GetAux_BInput() == true)
                     button_Aux2.BackColor = Color.Yellow;
                 else
                     button_Aux2.BackColor = Color.Silver;

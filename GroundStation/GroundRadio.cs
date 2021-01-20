@@ -181,14 +181,27 @@ namespace GroundStation
             if(commands.GetRollInput() > 80)
             {
                 port.Write("d");
-            }else if (commands.GetRollInput() < 20)
+            }
+            else if (commands.GetRollInput() < 20)
             {
                 port.Write("a");
             }
 
-            if (commands.GetAux1Input())
+            if (commands.GetAux_AInput())
             {
                 port.Write("0");
+            }
+            if(commands.GetAux_BInput())
+            {
+                port.Write("5");
+            }
+            if(commands.GetAux_XInput())
+            {
+                port.Write("i");
+            }
+            if(commands.GetAux_YInput())
+            {
+                port.Write("u");
             }
 
             port.BaseStream.Flush();
