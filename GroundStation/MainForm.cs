@@ -34,7 +34,7 @@ namespace GroundStation
         {
             InitializeComponent();
 
-            settings = new SerialSettings();
+            settings = new SerialSettings(); // TODO: move this out.  MainForm should not initialize SerialSettings.
 
             graphicsObject_Pitch = panel_Pitch.CreateGraphics();
             graphicsObject_Roll = panel_Roll.CreateGraphics();
@@ -55,7 +55,7 @@ namespace GroundStation
                 return;
 
             if (radio == null)
-                radio = new GroundRadio(115200, "COM6", input);
+                radio = new GroundRadio(115200, "COM6", input); // TODO: move this out, MainForm should not initialize radio.
 
             if (radio.SerialPortIsOpen() == true)
             {
@@ -69,7 +69,7 @@ namespace GroundStation
         private void usbControllerSetupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (input == null)
-                input = new CommandInput();
+                input = new CommandInput(); // TODO: move this out.  MainForm should not initialize command input.
 
             if (input.ControllerIsConnected())
             {
