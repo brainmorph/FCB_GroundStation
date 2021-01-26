@@ -56,7 +56,10 @@
             this.label_RadioPacketsDropped = new System.Windows.Forms.Label();
             this.panel_Pitch = new System.Windows.Forms.Panel();
             this.panel_Roll = new System.Windows.Forms.Panel();
-            this.label_PacketLostPercent = new System.Windows.Forms.Label();
+            this.groupBox_VisualIndicators = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox_PacketsLost = new System.Windows.Forms.GroupBox();
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -65,6 +68,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_Roll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_Pitch)).BeginInit();
             this.groupBox_ControlInput.SuspendLayout();
+            this.groupBox_VisualIndicators.SuspendLayout();
+            this.groupBox_PacketsLost.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip_Main
@@ -73,7 +78,7 @@
             this.settingsToolStripMenuItem});
             this.menuStrip_Main.Location = new System.Drawing.Point(0, 0);
             this.menuStrip_Main.Name = "menuStrip_Main";
-            this.menuStrip_Main.Size = new System.Drawing.Size(703, 24);
+            this.menuStrip_Main.Size = new System.Drawing.Size(674, 24);
             this.menuStrip_Main.TabIndex = 0;
             this.menuStrip_Main.Text = "menuStrip1";
             // 
@@ -104,7 +109,7 @@
             // 
             this.panel_SerialStatusBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_SerialStatusBox.BackColor = System.Drawing.Color.Red;
-            this.panel_SerialStatusBox.Location = new System.Drawing.Point(656, 27);
+            this.panel_SerialStatusBox.Location = new System.Drawing.Point(627, 27);
             this.panel_SerialStatusBox.Name = "panel_SerialStatusBox";
             this.panel_SerialStatusBox.Size = new System.Drawing.Size(35, 35);
             this.panel_SerialStatusBox.TabIndex = 1;
@@ -113,7 +118,7 @@
             // 
             this.label_Pitch.AutoSize = true;
             this.label_Pitch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Pitch.Location = new System.Drawing.Point(6, 30);
+            this.label_Pitch.Location = new System.Drawing.Point(15, 45);
             this.label_Pitch.Name = "label_Pitch";
             this.label_Pitch.Size = new System.Drawing.Size(67, 26);
             this.label_Pitch.TabIndex = 2;
@@ -129,7 +134,7 @@
             this.groupBox_Attitude.Controls.Add(this.label_Pitch);
             this.groupBox_Attitude.Location = new System.Drawing.Point(12, 84);
             this.groupBox_Attitude.Name = "groupBox_Attitude";
-            this.groupBox_Attitude.Size = new System.Drawing.Size(199, 152);
+            this.groupBox_Attitude.Size = new System.Drawing.Size(199, 198);
             this.groupBox_Attitude.TabIndex = 3;
             this.groupBox_Attitude.TabStop = false;
             this.groupBox_Attitude.Text = "Angle Error [degrees]";
@@ -138,7 +143,7 @@
             // 
             this.label_YawValue.AutoSize = true;
             this.label_YawValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_YawValue.Location = new System.Drawing.Point(90, 103);
+            this.label_YawValue.Location = new System.Drawing.Point(99, 118);
             this.label_YawValue.Name = "label_YawValue";
             this.label_YawValue.Size = new System.Drawing.Size(24, 26);
             this.label_YawValue.TabIndex = 7;
@@ -148,7 +153,7 @@
             // 
             this.label_RollValue.AutoSize = true;
             this.label_RollValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_RollValue.Location = new System.Drawing.Point(90, 67);
+            this.label_RollValue.Location = new System.Drawing.Point(99, 82);
             this.label_RollValue.Name = "label_RollValue";
             this.label_RollValue.Size = new System.Drawing.Size(24, 26);
             this.label_RollValue.TabIndex = 6;
@@ -158,7 +163,7 @@
             // 
             this.label_PitchValue.AutoSize = true;
             this.label_PitchValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_PitchValue.Location = new System.Drawing.Point(90, 30);
+            this.label_PitchValue.Location = new System.Drawing.Point(99, 45);
             this.label_PitchValue.Name = "label_PitchValue";
             this.label_PitchValue.Size = new System.Drawing.Size(24, 26);
             this.label_PitchValue.TabIndex = 5;
@@ -168,7 +173,7 @@
             // 
             this.label_Yaw.AutoSize = true;
             this.label_Yaw.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Yaw.Location = new System.Drawing.Point(6, 103);
+            this.label_Yaw.Location = new System.Drawing.Point(15, 118);
             this.label_Yaw.Name = "label_Yaw";
             this.label_Yaw.Size = new System.Drawing.Size(62, 26);
             this.label_Yaw.TabIndex = 4;
@@ -178,7 +183,7 @@
             // 
             this.label_Roll.AutoSize = true;
             this.label_Roll.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Roll.Location = new System.Drawing.Point(6, 67);
+            this.label_Roll.Location = new System.Drawing.Point(15, 82);
             this.label_Roll.Name = "label_Roll";
             this.label_Roll.Size = new System.Drawing.Size(56, 26);
             this.label_Roll.TabIndex = 3;
@@ -187,9 +192,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label_Altitude);
-            this.groupBox1.Location = new System.Drawing.Point(12, 259);
+            this.groupBox1.Location = new System.Drawing.Point(497, 288);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(199, 80);
+            this.groupBox1.Size = new System.Drawing.Size(165, 68);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Altitude [meters]";
@@ -198,7 +203,7 @@
             // 
             this.label_Altitude.AutoSize = true;
             this.label_Altitude.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Altitude.Location = new System.Drawing.Point(90, 27);
+            this.label_Altitude.Location = new System.Drawing.Point(75, 24);
             this.label_Altitude.Name = "label_Altitude";
             this.label_Altitude.Size = new System.Drawing.Size(24, 26);
             this.label_Altitude.TabIndex = 0;
@@ -280,7 +285,7 @@
             this.groupBox_ControlInput.Controls.Add(this.trackBar_Roll);
             this.groupBox_ControlInput.Controls.Add(this.trackBar_Throttle);
             this.groupBox_ControlInput.Controls.Add(this.trackBar_Yaw);
-            this.groupBox_ControlInput.Location = new System.Drawing.Point(217, 84);
+            this.groupBox_ControlInput.Location = new System.Drawing.Point(12, 288);
             this.groupBox_ControlInput.Name = "groupBox_ControlInput";
             this.groupBox_ControlInput.Size = new System.Drawing.Size(474, 255);
             this.groupBox_ControlInput.TabIndex = 13;
@@ -311,7 +316,7 @@
             // 
             this.label_RadioPacketsDropped.AutoSize = true;
             this.label_RadioPacketsDropped.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_RadioPacketsDropped.Location = new System.Drawing.Point(525, 33);
+            this.label_RadioPacketsDropped.Location = new System.Drawing.Point(54, 16);
             this.label_RadioPacketsDropped.Name = "label_RadioPacketsDropped";
             this.label_RadioPacketsDropped.Size = new System.Drawing.Size(32, 26);
             this.label_RadioPacketsDropped.TabIndex = 14;
@@ -319,37 +324,68 @@
             // 
             // panel_Pitch
             // 
-            this.panel_Pitch.Location = new System.Drawing.Point(12, 345);
+            this.panel_Pitch.Location = new System.Drawing.Point(16, 45);
             this.panel_Pitch.Name = "panel_Pitch";
             this.panel_Pitch.Size = new System.Drawing.Size(199, 147);
             this.panel_Pitch.TabIndex = 15;
             // 
             // panel_Roll
             // 
-            this.panel_Roll.Location = new System.Drawing.Point(217, 345);
+            this.panel_Roll.Location = new System.Drawing.Point(231, 45);
             this.panel_Roll.Name = "panel_Roll";
             this.panel_Roll.Size = new System.Drawing.Size(199, 147);
             this.panel_Roll.TabIndex = 16;
             // 
-            // label_PacketLostPercent
+            // groupBox_VisualIndicators
             // 
-            this.label_PacketLostPercent.AutoSize = true;
-            this.label_PacketLostPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_PacketLostPercent.Location = new System.Drawing.Point(344, 33);
-            this.label_PacketLostPercent.Name = "label_PacketLostPercent";
-            this.label_PacketLostPercent.Size = new System.Drawing.Size(175, 26);
-            this.label_PacketLostPercent.TabIndex = 17;
-            this.label_PacketLostPercent.Text = "Packets Lost [%]";
+            this.groupBox_VisualIndicators.Controls.Add(this.label2);
+            this.groupBox_VisualIndicators.Controls.Add(this.label1);
+            this.groupBox_VisualIndicators.Controls.Add(this.panel_Roll);
+            this.groupBox_VisualIndicators.Controls.Add(this.panel_Pitch);
+            this.groupBox_VisualIndicators.Location = new System.Drawing.Point(217, 84);
+            this.groupBox_VisualIndicators.Name = "groupBox_VisualIndicators";
+            this.groupBox_VisualIndicators.Size = new System.Drawing.Size(445, 198);
+            this.groupBox_VisualIndicators.TabIndex = 18;
+            this.groupBox_VisualIndicators.TabStop = false;
+            this.groupBox_VisualIndicators.Text = "Visual Indicators";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(81, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 26);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Pitch";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(299, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 26);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Roll";
+            // 
+            // groupBox_PacketsLost
+            // 
+            this.groupBox_PacketsLost.Controls.Add(this.label_RadioPacketsDropped);
+            this.groupBox_PacketsLost.Location = new System.Drawing.Point(489, 27);
+            this.groupBox_PacketsLost.Name = "groupBox_PacketsLost";
+            this.groupBox_PacketsLost.Size = new System.Drawing.Size(132, 46);
+            this.groupBox_PacketsLost.TabIndex = 19;
+            this.groupBox_PacketsLost.TabStop = false;
+            this.groupBox_PacketsLost.Text = "Radio Packets Lost [%]";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 504);
-            this.Controls.Add(this.label_PacketLostPercent);
-            this.Controls.Add(this.panel_Roll);
-            this.Controls.Add(this.panel_Pitch);
-            this.Controls.Add(this.label_RadioPacketsDropped);
+            this.ClientSize = new System.Drawing.Size(674, 567);
+            this.Controls.Add(this.groupBox_PacketsLost);
+            this.Controls.Add(this.groupBox_VisualIndicators);
             this.Controls.Add(this.groupBox_ControlInput);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_Attitude);
@@ -371,6 +407,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_Pitch)).EndInit();
             this.groupBox_ControlInput.ResumeLayout(false);
             this.groupBox_ControlInput.PerformLayout();
+            this.groupBox_VisualIndicators.ResumeLayout(false);
+            this.groupBox_VisualIndicators.PerformLayout();
+            this.groupBox_PacketsLost.ResumeLayout(false);
+            this.groupBox_PacketsLost.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -405,7 +445,10 @@
         private System.Windows.Forms.Label label_RadioPacketsDropped;
         private System.Windows.Forms.Panel panel_Pitch;
         private System.Windows.Forms.Panel panel_Roll;
-        private System.Windows.Forms.Label label_PacketLostPercent;
+        private System.Windows.Forms.GroupBox groupBox_VisualIndicators;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox_PacketsLost;
     }
 }
 

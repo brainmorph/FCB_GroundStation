@@ -58,8 +58,8 @@ namespace GroundStation
 
             /* Since FormSerialPortSettings s object was created in this function, we still have access
              * to its data until the end of this function */
-            settings.baudrate = s.settings.baudrate;
-            settings.portName = s.settings.portName;
+            settings.baudrate = s.settings.baudrate; //TODO: investigate pitfalls
+            settings.portName = s.settings.portName; //TODO: investigate pitfalls
 
             if (radio == null)
                 radio = new GroundRadio(settings.baudrate, settings.portName, input); // TODO: move this out, MainForm should not initialize radio.
