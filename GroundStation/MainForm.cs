@@ -48,14 +48,21 @@ namespace GroundStation
                 return;
             }
 
-            FormSerialPortSettings s = new FormSerialPortSettings(ref settings);
+            FormSerialPortSettings s = new FormSerialPortSettings();
             s.ShowDialog();     // Causes background window to not accept input
 
+
+            /* Do not save settings if dialog was exited out of */
             if (!s.connectButtonPressed)
                 return;
 
+            /* Since FormSerialPortSettings s object was created in this function, we still have access
+             * to its data until the end of this function */
+            settings.baudrate = s.settings.baudrate;
+            settings.portName = s.settings.portName;
+
             if (radio == null)
-                radio = new GroundRadio(115200, "COM6", input); // TODO: move this out, MainForm should not initialize radio.
+                radio = new GroundRadio(settings.baudrate, settings.portName, input); // TODO: move this out, MainForm should not initialize radio.
 
             if (radio.SerialPortIsOpen() == true)
             {

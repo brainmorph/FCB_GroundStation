@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_BaudRate = new System.Windows.Forms.ComboBox();
             this.button_Apply = new System.Windows.Forms.Button();
+            this.comboBox_PortName = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +53,7 @@
             this.comboBox_BaudRate.Location = new System.Drawing.Point(129, 39);
             this.comboBox_BaudRate.Name = "comboBox_BaudRate";
             this.comboBox_BaudRate.Size = new System.Drawing.Size(83, 21);
-            this.comboBox_BaudRate.TabIndex = 1;
+            this.comboBox_BaudRate.TabIndex = 0;
             this.comboBox_BaudRate.SelectedIndexChanged += new System.EventHandler(this.comboBox_BaudRate_SelectedIndexChanged);
             // 
             // button_Apply
@@ -64,11 +66,30 @@
             this.button_Apply.UseVisualStyleBackColor = true;
             this.button_Apply.Click += new System.EventHandler(this.button_Connect_Click);
             // 
+            // comboBox_PortName
+            // 
+            this.comboBox_PortName.FormattingEnabled = true;
+            this.comboBox_PortName.Location = new System.Drawing.Point(129, 66);
+            this.comboBox_PortName.Name = "comboBox_PortName";
+            this.comboBox_PortName.Size = new System.Drawing.Size(83, 21);
+            this.comboBox_PortName.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(65, 69);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Port";
+            // 
             // FormSerialPortSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(279, 173);
+            this.Controls.Add(this.comboBox_PortName);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button_Apply);
             this.Controls.Add(this.comboBox_BaudRate);
             this.Controls.Add(this.label1);
@@ -85,5 +106,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox_BaudRate;
         private System.Windows.Forms.Button button_Apply;
+        private System.Windows.Forms.ComboBox comboBox_PortName;
+        private System.Windows.Forms.Label label2;
     }
 }

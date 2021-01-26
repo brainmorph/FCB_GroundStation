@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace GroundStation
 {
@@ -15,19 +16,27 @@ namespace GroundStation
     {
 
         public bool connectButtonPressed = false;
-        private SerialSettings settings;
+        public SerialSettings settings;
 
 
-        public FormSerialPortSettings(ref SerialSettings set)
+        public FormSerialPortSettings()
         {
             InitializeComponent();
+            
 
-            settings = set;
+            // Print out available serial ports at this time.
+            string[] ports = SerialPort.GetPortNames();
+            foreach (string s in ports)
+            {
+                Debug.WriteLine("Available port: " + s);
+                comboBox_PortName.Items.Add(s);
+            }
         }
 
         private void FormSerialPortSettings_Load(object sender, EventArgs e)
         {
             comboBox_BaudRate.SelectedIndex = 0; // select a default index in dropdown
+            comboBox_PortName.SelectedIndex = comboBox_PortName.Items.Count - 1; // select last item by default
             connectButtonPressed = false;
         }
 
@@ -35,8 +44,8 @@ namespace GroundStation
         {
             /* Configure port */
             Debug.WriteLine("Set baudrate: " + comboBox_BaudRate.Text);
-            settings.baudrate = int.Parse(comboBox_BaudRate.Text);
-            settings.portName = "COM9"; // TODO: set this dynamically
+            settings.baudrate = int.Parse(comboBox_BaudRate.SelectedItem.ToString());
+            settings.portName = comboBox_PortName.SelectedItem.ToString();
 
             connectButtonPressed = true;
 
