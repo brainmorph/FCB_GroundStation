@@ -97,6 +97,9 @@ namespace GroundStation
 
                 AnimatePitchIndicator();
                 AnimateRollIndicator();
+                
+                label_KpOffsetValue.Text = radio.commandState.kpOffset.ToString();
+                label_ThrottleValue.Text = radio.commandState.throttle.ToString();
             }
 
             /* Update Controller Visualization */

@@ -60,6 +60,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox_PacketsLost = new System.Windows.Forms.GroupBox();
+            this.label_KpOffset = new System.Windows.Forms.Label();
+            this.label_KpOffsetValue = new System.Windows.Forms.Label();
+            this.label_ThrottleValue = new System.Windows.Forms.Label();
+            this.label_Throttle = new System.Windows.Forms.Label();
             this.menuStrip_Main.SuspendLayout();
             this.groupBox_Attitude.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -78,7 +82,7 @@
             this.settingsToolStripMenuItem});
             this.menuStrip_Main.Location = new System.Drawing.Point(0, 0);
             this.menuStrip_Main.Name = "menuStrip_Main";
-            this.menuStrip_Main.Size = new System.Drawing.Size(674, 24);
+            this.menuStrip_Main.Size = new System.Drawing.Size(675, 24);
             this.menuStrip_Main.TabIndex = 0;
             this.menuStrip_Main.Text = "menuStrip1";
             // 
@@ -109,7 +113,7 @@
             // 
             this.panel_SerialStatusBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_SerialStatusBox.BackColor = System.Drawing.Color.Red;
-            this.panel_SerialStatusBox.Location = new System.Drawing.Point(627, 27);
+            this.panel_SerialStatusBox.Location = new System.Drawing.Point(628, 27);
             this.panel_SerialStatusBox.Name = "panel_SerialStatusBox";
             this.panel_SerialStatusBox.Size = new System.Drawing.Size(35, 35);
             this.panel_SerialStatusBox.TabIndex = 1;
@@ -379,11 +383,55 @@
             this.groupBox_PacketsLost.TabStop = false;
             this.groupBox_PacketsLost.Text = "Radio Packets Lost [%]";
             // 
+            // label_KpOffset
+            // 
+            this.label_KpOffset.AutoSize = true;
+            this.label_KpOffset.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_KpOffset.Location = new System.Drawing.Point(492, 426);
+            this.label_KpOffset.Name = "label_KpOffset";
+            this.label_KpOffset.Size = new System.Drawing.Size(109, 26);
+            this.label_KpOffset.TabIndex = 20;
+            this.label_KpOffset.Text = "Kp Offset:";
+            // 
+            // label_KpOffsetValue
+            // 
+            this.label_KpOffsetValue.AutoSize = true;
+            this.label_KpOffsetValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_KpOffsetValue.Location = new System.Drawing.Point(607, 426);
+            this.label_KpOffsetValue.Name = "label_KpOffsetValue";
+            this.label_KpOffsetValue.Size = new System.Drawing.Size(24, 26);
+            this.label_KpOffsetValue.TabIndex = 8;
+            this.label_KpOffsetValue.Text = "0";
+            // 
+            // label_ThrottleValue
+            // 
+            this.label_ThrottleValue.AutoSize = true;
+            this.label_ThrottleValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_ThrottleValue.Location = new System.Drawing.Point(607, 380);
+            this.label_ThrottleValue.Name = "label_ThrottleValue";
+            this.label_ThrottleValue.Size = new System.Drawing.Size(24, 26);
+            this.label_ThrottleValue.TabIndex = 21;
+            this.label_ThrottleValue.Text = "0";
+            // 
+            // label_Throttle
+            // 
+            this.label_Throttle.AutoSize = true;
+            this.label_Throttle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Throttle.Location = new System.Drawing.Point(492, 380);
+            this.label_Throttle.Name = "label_Throttle";
+            this.label_Throttle.Size = new System.Drawing.Size(90, 26);
+            this.label_Throttle.TabIndex = 22;
+            this.label_Throttle.Text = "Throttle:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(674, 567);
+            this.ClientSize = new System.Drawing.Size(675, 567);
+            this.Controls.Add(this.label_ThrottleValue);
+            this.Controls.Add(this.label_Throttle);
+            this.Controls.Add(this.label_KpOffsetValue);
+            this.Controls.Add(this.label_KpOffset);
             this.Controls.Add(this.groupBox_PacketsLost);
             this.Controls.Add(this.groupBox_VisualIndicators);
             this.Controls.Add(this.groupBox_ControlInput);
@@ -449,6 +497,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox_PacketsLost;
+        private System.Windows.Forms.Label label_KpOffset;
+        private System.Windows.Forms.Label label_KpOffsetValue;
+        private System.Windows.Forms.Label label_ThrottleValue;
+        private System.Windows.Forms.Label label_Throttle;
     }
 }
 
